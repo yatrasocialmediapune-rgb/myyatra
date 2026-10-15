@@ -1,0 +1,86 @@
+{
+  "name": "My Yatra",
+  "legalName": "My Yatra",
+  "tagline": "Journeys Through India",
+  "description": "Handcrafted tour packages across India — pilgrimages, honeymoons, hill escapes and family holidays, planned personally on WhatsApp by our team in Pune.",
+  "url": "https://myyatra.co.in",
+  "phone": "+91 93596 73459",
+  "whatsapp": "919359673459",
+  "email": "yatrasocialmedia.pune@gmail.com",
+  "address": {
+    "street": "",
+    "city": "Pune",
+    "region": "Maharashtra",
+    "postalCode": "",
+    "country": "IN"
+  },
+  "hours": "Mon–Sat, 10:00 am – 7:00 pm",
+  "socials": {
+    "instagram": "",
+    "facebook": "",
+    "youtube": ""
+  },
+  "defaultOgImage": "images/og-default.svg",
+  "heroImage": "images/hero-india.svg",
+  "whatsappGreeting": "Hi My Yatra! I'd like help planning a trip.",
+  "stats": {
+    "travellers": 1200,
+    "yearsPlanning": 5
+  },
+  "testimonials": [
+    {
+      "sample": true,
+      "name": "Sneha & Rohit",
+      "city": "Pune",
+      "trip": "Kashmir honeymoon",
+      "image": "images/kashmir-houseboat.svg",
+      "quote": "The houseboat night was pure magic, and our driver felt like family by day three. Every small request on WhatsApp was answered within minutes."
+    },
+    {
+      "sample": true,
+      "name": "The Kulkarni family",
+      "city": "Nashik",
+      "trip": "Dwarka–Somnath yatra",
+      "image": "images/dwarka-temple.svg",
+      "quote": "Travelling with my parents, I worried about the pace. The hotels were right next to the temples and we never had to rush a single aarti."
+    },
+    {
+      "sample": true,
+      "name": "Ananya M.",
+      "city": "Mumbai",
+      "trip": "Kerala with friends",
+      "image": "images/kerala-backwaters.svg",
+      "quote": "Tea hills, spice gardens and a houseboat all in one week, without a single planning headache. The itinerary was honest and well paced."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do I book a package?",
+      "a": "Open any package and tap \"Plan this trip on WhatsApp\". Choose your travel month and number of travellers first so we can reply with an exact quote. Once you confirm, we share the booking details and payment options."
+    },
+    {
+      "q": "Are the prices per person?",
+      "a": "Yes. All prices are per person on twin-sharing, starting from the price shown. The final price depends on travel dates, hotel category, group size and availability, and is confirmed before you pay anything."
+    },
+    {
+      "q": "Do the packages include flights or trains?",
+      "a": "Packages start and end at the city mentioned on each page and do not include flights or train tickets unless stated. We are happy to suggest the best connections from your city."
+    },
+    {
+      "q": "Can I customise an itinerary?",
+      "a": "Absolutely. Every itinerary is a starting point. We can add or remove days, upgrade hotels, change the route or plan a completely private trip around your dates."
+    },
+    {
+      "q": "Is there a minimum number of travellers?",
+      "a": "Most packages are priced for a minimum of two travellers. Solo travellers and larger groups are welcome too; message us and we will share a tailored quote."
+    },
+    {
+      "q": "How much advance do I need to pay?",
+      "a": "Typically a part payment confirms your booking and the balance is due before travel. Exact terms are shared with your quote and are also explained in our Cancellation & Refund policy."
+    },
+    {
+      "q": "Do you operate only in India?",
+      "a": "Yes. We focus only on domestic travel across India so that we know every route, hotel and driver we recommend."
+    }
+  ]
+}

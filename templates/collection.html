@@ -1,0 +1,60 @@
+<section class="page-hero page-hero--image">
+  <div class="page-hero__media">{{{heroImage}}}</div>
+  {{svg rangoli}}
+  <div class="container">
+    <div class="page-hero__content">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tours/">Tours</a></li><li><span aria-current="page">{{name}}</span></li></ol></nav>
+      <span class="stamp stamp--lg"><span>{{stampText}}</span></span>
+      <p class="eyebrow">{{eyebrow}}</p>
+      <h1>{{{titleHtml}}}</h1>
+      <p class="lede">{{intro}}</p>
+      {{{heroChips}}}
+    </div>
+  </div>
+  {{svg hero-silhouettes}}
+</section>
+
+<section class="section" style="padding-top:clamp(2rem,1.5rem + 2vw,3.5rem)" aria-labelledby="list-title">
+  <div class="container">
+    <div class="section-head-row">
+      <div class="section-head">
+        <p class="eyebrow">{{countLabel}}</p>
+        <h2 class="h2" id="list-title">{{{listTitleHtml}}}</h2>
+      </div>
+      <a class="link-arrow" href="{{filterUrl}}">Filter &amp; sort all tours <svg class="icon"><use href="#i-arrow"/></svg></a>
+    </div>
+    {{{listHtml}}}
+  </div>
+</section>
+
+<div class="container"><div class="divider" aria-hidden="true">{{svg rangoli}}</div></div>
+
+<section class="section section--cv" aria-labelledby="more-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Keep exploring</p>
+      <h2 class="h2" id="more-title">More ways to <span class="accent">wander</span></h2>
+    </div>
+    <div class="explore-more">
+      <div><h3>By state</h3><div class="chip-row">{{{stateChips}}}</div></div>
+      <div><h3>By theme</h3><div class="chip-row">{{{themeChips}}}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cv" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      {{svg rangoli}}
+      <div>
+        <p class="eyebrow">Something different in mind?</p>
+        <h2>We'll plan a custom {{ctaName}} trip <span class="accent">for you.</span></h2>
+        <p style="margin-top:12px">Share your dates, group size and budget. We reply with a day-by-day plan and a per-person price.</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary btn--lg" href="{{waCollection}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> Plan on WhatsApp</a>
+        <a class="btn btn--light btn--lg" href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> Call us</a>
+      </div>
+    </div>
+  </div>
+</section>

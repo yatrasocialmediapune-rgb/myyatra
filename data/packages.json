@@ -1,0 +1,217 @@
+[
+  {
+    "id": "pkg-kashmir-01",
+    "slug": "kashmir-lakes-meadows-4n-5d",
+    "title": "Kashmir: Lakes, Meadows & Snow Peaks",
+    "state": "Jammu & Kashmir",
+    "cities": ["Srinagar", "Gulmarg", "Pahalgam"],
+    "themes": ["Honeymoon", "Family", "Hill Station"],
+    "nights": 4,
+    "days": 5,
+    "startCity": "Srinagar",
+    "minPeople": 2,
+    "mealPlan": "Breakfast & Dinner (MAP)",
+    "price": 32999,
+    "salePrice": 27499,
+    "featured": true,
+    "published": true,
+    "coverImage": "images/kashmir-dal-lake.svg",
+    "gallery": [
+      "images/kashmir-dal-lake.svg",
+      "images/kashmir-gulmarg.svg",
+      "images/kashmir-pahalgam.svg",
+      "images/kashmir-houseboat.svg"
+    ],
+    "shortDescription": "Wake up on a carved-cedar houseboat, ride a cable car above Gulmarg's meadows and spend two slow days by the Lidder river in Pahalgam. A relaxed first trip to the valley, with a private cab and a local driver who knows every chai stop on the way.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrive in Srinagar · Houseboat on Dal Lake",
+        "description": "Our driver meets you at Srinagar airport and takes you to a deluxe houseboat on Dal Lake. After a welcome kahwa, step into a shikara for an hour-long sunset ride past floating vegetable gardens and lakeside markets. If time allows, stroll through the Nishat or Shalimar Mughal gardens. Dinner and overnight on the houseboat."
+      },
+      {
+        "day": 2,
+        "title": "Srinagar → Gulmarg · Meadow of Flowers",
+        "description": "Drive about two hours to Gulmarg through apple orchards and pine forest. Ride the Gondola (tickets on the spot) to Kongdoori for snow views in season, or take a pony to the frozen lake trail. Evening free to walk the meadow at golden hour. Dinner and overnight in Gulmarg."
+      },
+      {
+        "day": 3,
+        "title": "Gulmarg → Pahalgam · Saffron Country",
+        "description": "Head to Pahalgam via Pampore, where saffron fields bloom purple in autumn, and stop at the 9th-century Avantipur temple ruins. Arrive by afternoon and settle into your riverside hotel. Spend the evening by the Lidder river. Dinner and overnight in Pahalgam."
+      },
+      {
+        "day": 4,
+        "title": "Pahalgam · Aru, Betaab & Chandanwari",
+        "description": "A full day in the valleys around Pahalgam. Local union cabs (paid directly) take you to Aru valley, Betaab valley and Chandanwari, the starting point of the Amarnath trail. Pack a picnic, try a short walk along the stream, and return for a bonfire dinner (weather permitting). Overnight in Pahalgam."
+      },
+      {
+        "day": 5,
+        "title": "Pahalgam → Srinagar · Departure",
+        "description": "After breakfast, drive back to Srinagar with an optional stop at a family-run handicraft workshop for pashmina and papier-mâché. Drop at Srinagar airport for your onward journey, with the valley firmly on your 'come back soon' list."
+      }
+    ],
+    "inclusions": [
+      "1 night deluxe houseboat on Dal Lake",
+      "1 night in Gulmarg and 2 nights in Pahalgam (3-star hotels)",
+      "Daily breakfast and dinner",
+      "1-hour shikara ride on Dal Lake",
+      "Private cab for all transfers and sightseeing as per itinerary",
+      "Airport pick-up and drop at Srinagar",
+      "Driver allowance, tolls, parking and fuel",
+      "All applicable hotel taxes"
+    ],
+    "exclusions": [
+      "Flights or train tickets to Srinagar",
+      "Gulmarg Gondola tickets and pony rides",
+      "Local union cabs in Pahalgam and Gulmarg",
+      "Lunch, snacks and drinks",
+      "Travel insurance",
+      "Anything not listed under inclusions"
+    ],
+    "seoTitle": "Kashmir Tour Package 4N/5D – Srinagar, Gulmarg, Pahalgam | My Yatra",
+    "seoDescription": "4 nights / 5 days Kashmir tour with houseboat stay on Dal Lake, Gulmarg Gondola day and two nights in Pahalgam. Private cab, breakfast & dinner. Plan on WhatsApp.",
+    "updatedAt": "2026-10-15"
+  },
+  {
+    "id": "pkg-dwarka-somnath-01",
+    "slug": "dwarka-somnath-yatra-3n-4d",
+    "title": "Dwarka–Somnath Darshan Yatra",
+    "state": "Gujarat",
+    "cities": ["Dwarka", "Bet Dwarka", "Porbandar", "Somnath"],
+    "themes": ["Pilgrimage", "Family"],
+    "nights": 3,
+    "days": 4,
+    "startCity": "Rajkot",
+    "minPeople": 2,
+    "mealPlan": "Breakfast only (CP)",
+    "price": 15999,
+    "salePrice": 13499,
+    "featured": true,
+    "published": true,
+    "coverImage": "images/dwarka-temple.svg",
+    "gallery": [
+      "images/dwarka-temple.svg",
+      "images/dwarka-bet-ferry.svg",
+      "images/somnath-shore.svg"
+    ],
+    "shortDescription": "Two Jyotirlingas, Lord Krishna's island kingdom and the sea-facing shrine of Somnath — covered at an unhurried pace with comfortable hotels close to the temples, a private cab and time for every aarti.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Rajkot → Dwarka · Evening Aarti",
+        "description": "Pick-up from Rajkot railway station or airport and drive about four and a half hours to Dwarka. Check in near the temple, freshen up and walk down to Gomti Ghat. Attend the evening aarti at the Dwarkadhish temple as the flag-hoisted spire glows against the sky. Overnight in Dwarka."
+      },
+      {
+        "day": 2,
+        "title": "Nageshwar, Bet Dwarka & Rukmini Temple",
+        "description": "Morning darshan at Nageshwar Jyotirlinga, then continue to Okha for the short ferry to Bet Dwarka, believed to be Krishna's residence. On the way back, visit Gopi Talav and the Rukmini Devi temple, known for its intricate carvings. Evening free at the Dwarka seafront. Overnight in Dwarka."
+      },
+      {
+        "day": 3,
+        "title": "Dwarka → Porbandar → Somnath",
+        "description": "Drive along the coast to Porbandar and visit Kirti Mandir, the birthplace of Mahatma Gandhi, and the Sudama temple. Continue to Somnath and check in. In the evening, attend the aarti and stay for the light-and-sound show that tells the temple's story against the sound of the waves. Overnight in Somnath."
+      },
+      {
+        "day": 4,
+        "title": "Somnath Darshan · Return to Rajkot",
+        "description": "Early morning darshan at the Somnath Jyotirlinga, followed by Bhalka Tirth and the Triveni Sangam ghat. After breakfast, drive back to Rajkot (around four hours) for your onward train or flight, carrying prasad and peace of mind."
+      }
+    ],
+    "inclusions": [
+      "2 nights in Dwarka and 1 night in Somnath (temple-side hotels)",
+      "Daily breakfast",
+      "Private AC cab from Rajkot and back, including all sightseeing",
+      "Driver allowance, tolls, parking and fuel",
+      "Assistance with darshan timings and local guidance",
+      "All applicable hotel taxes"
+    ],
+    "exclusions": [
+      "Train or flight tickets to Rajkot",
+      "Bet Dwarka ferry tickets",
+      "Light-and-sound show tickets",
+      "Lunch and dinner",
+      "Puja, donation and special darshan charges",
+      "Anything not listed under inclusions"
+    ],
+    "seoTitle": "Dwarka Somnath Tour Package 3N/4D from Rajkot | My Yatra",
+    "seoDescription": "3 nights / 4 days Dwarka–Somnath yatra covering Nageshwar Jyotirlinga, Bet Dwarka, Porbandar and Somnath aarti. Private AC cab and temple-side hotels.",
+    "updatedAt": "2026-10-15"
+  },
+  {
+    "id": "pkg-kerala-01",
+    "slug": "kerala-hills-and-backwaters-5n-6d",
+    "title": "Kerala: Tea Hills to Backwaters",
+    "state": "Kerala",
+    "cities": ["Munnar", "Thekkady", "Alleppey", "Kochi"],
+    "themes": ["Honeymoon", "Family", "Hill Station"],
+    "nights": 5,
+    "days": 6,
+    "startCity": "Kochi",
+    "minPeople": 2,
+    "mealPlan": "Breakfast daily + all meals on houseboat",
+    "price": 28999,
+    "salePrice": 24999,
+    "featured": true,
+    "published": true,
+    "coverImage": "images/kerala-backwaters.svg",
+    "gallery": [
+      "images/kerala-backwaters.svg",
+      "images/kerala-munnar.svg",
+      "images/kerala-thekkady.svg",
+      "images/kerala-fort-kochi.svg"
+    ],
+    "shortDescription": "Misty tea estates in Munnar, spice gardens in Thekkady, a night drifting on a private houseboat in Alleppey and a sunset walk past the fishing nets of Fort Kochi — Kerala's greatest hits, paced for slow mornings.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Kochi → Munnar · Into the Hills",
+        "description": "Meet our driver at Kochi airport or railway station and climb into the Western Ghats. Stop at the Cheeyappara and Valara waterfalls and watch the landscape turn into endless rows of tea. Check in to your hill resort and enjoy a quiet evening with a cup of fresh estate tea. Overnight in Munnar."
+      },
+      {
+        "day": 2,
+        "title": "Munnar · Tea Estates & Eravikulam",
+        "description": "Visit Eravikulam National Park, home of the shy Nilgiri tahr (closed in calving season, usually Feb–Mar), then learn how leaf becomes tea at the tea museum. In the afternoon, see Mattupetty Dam, Echo Point and the flower gardens. Overnight in Munnar."
+      },
+      {
+        "day": 3,
+        "title": "Munnar → Thekkady · Spice Country",
+        "description": "A scenic drive through cardamom hills to Thekkady. Walk through a working spice plantation with a local guide, then choose between an optional Periyar lake boat ride or a Kalaripayattu martial-arts show in the evening. Overnight in Thekkady."
+      },
+      {
+        "day": 4,
+        "title": "Thekkady → Alleppey · Houseboat Night",
+        "description": "Drive down to Alleppey and board your private Kerala houseboat by noon. Cruise the palm-lined backwaters past paddy fields, village churches and toddy shops while the crew cooks a traditional Kerala lunch, evening snacks and dinner on board. The boat anchors for the night on the quiet water."
+      },
+      {
+        "day": 5,
+        "title": "Alleppey → Fort Kochi · Heritage Walk",
+        "description": "Disembark after breakfast and drive to Kochi. Explore Fort Kochi's old streets, St. Francis Church, the Dutch Palace and the antique shops of Jew Town. End the day watching the Chinese fishing nets lift against the sunset. Overnight in Kochi."
+      },
+      {
+        "day": 6,
+        "title": "Departure from Kochi",
+        "description": "Enjoy a relaxed breakfast and some last-minute shopping for spices and banana chips before your drop at Kochi airport or railway station."
+      }
+    ],
+    "inclusions": [
+      "2 nights Munnar, 1 night Thekkady, 1 night Kochi (3-star hotels)",
+      "1 night private AC houseboat in Alleppey with all meals",
+      "Daily breakfast at hotels",
+      "Private AC cab for all transfers and sightseeing as per itinerary",
+      "Airport / railway station pick-up and drop at Kochi",
+      "Driver allowance, tolls, parking and fuel",
+      "All applicable hotel taxes"
+    ],
+    "exclusions": [
+      "Flights or train tickets to Kochi",
+      "Entry tickets, boat rides and show tickets",
+      "Lunch and dinner at hotels",
+      "Travel insurance",
+      "Tips and personal expenses",
+      "Anything not listed under inclusions"
+    ],
+    "seoTitle": "Kerala Tour Package 5N/6D – Munnar, Thekkady, Alleppey Houseboat | My Yatra",
+    "seoDescription": "5 nights / 6 days Kerala tour: Munnar tea hills, Thekkady spice gardens, private Alleppey houseboat and Fort Kochi. Private AC cab and breakfast included.",
+    "updatedAt": "2026-10-15"
+  }
+]

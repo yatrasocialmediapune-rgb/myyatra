@@ -1,0 +1,20 @@
+<section class="lost">
+  <div class="container">
+    <div class="lost__ticket">
+      <p class="meta">Boarding pass · Destination unknown</p>
+      <p class="lost__code" aria-hidden="true">4<span>0</span>4</p>
+      <h1 class="h3">This road doesn't lead anywhere… yet.</h1>
+      <p>The page you were looking for has moved or never existed. Let's get you back on route.</p>
+      <div class="bpass__perf" aria-hidden="true"></div>
+      <form class="searchbox" action="/tours/" method="get" role="search">
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input type="search" name="q" placeholder="Search a destination" aria-label="Search tours">
+      </form>
+      <div class="lost__actions">
+        <a class="btn btn--primary" href="/tours/">Browse all tours <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="/">Back home</a>
+      </div>
+      <div class="chip-row" style="justify-content:center">{{{popularLinks}}}</div>
+    </div>
+  </div>
+</section>

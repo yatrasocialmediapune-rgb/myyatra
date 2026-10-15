@@ -1,0 +1,5 @@
+<div class="silhouettes" aria-hidden="true">
+<svg class="silhouette silhouette--far" data-depth="0.12" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice"><path fill="var(--white)" opacity=".14" d="M0 210 120 120l70 50 110-120 120 110 70-40 140 120 90-70 120 60 150-150 110 100 90-50 130 120 120-70V320H0Z"/></svg>
+<svg class="silhouette silhouette--mid" data-depth="0.22" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice"><path fill="var(--white)" opacity=".28" d="M0 250c80-30 150-40 230-20 30-50 34-104 44-104s14 54 46 104c50-6 90 4 130 14V214h10v-30a24 24 0 0 1 48 0v30h10v30c40-10 100-26 170-12 20-40 32-60 52-60 18 0 30 20 50 56 60-18 120-20 190-4l6-62 6 62c50 4 110-10 170-6 64 4 120 22 178 40 10-50 20-100 30-100s20 50 32 92c20 4 30 8 38 10V320H0Z"/></svg>
+<svg class="silhouette silhouette--near" data-depth="0.34" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice"><path fill="var(--white)" d="M0 296c140-30 260-44 380-28 110 14 200 40 330 34 150-8 250-52 400-50 120 2 220 20 330 40V320H0Z"/></svg>
+</div>

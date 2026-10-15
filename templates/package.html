@@ -1,0 +1,168 @@
+<section class="trip-hero">
+  <div class="trip-hero__media">{{{heroImage}}}</div>
+  <div class="container">
+    <div class="trip-hero__content">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tours/">Tours</a></li>
+          <li><a href="{{stateUrl}}">{{p.state}}</a></li>
+          <li><span aria-current="page">{{p.nights}}N/{{p.days}}D</span></li>
+        </ol>
+      </nav>
+      <span class="stamp stamp--lg"><span>{{stateShort}}<br>{{p.nights}}N · {{p.days}}D</span></span>
+      <p class="meta">{{metaLine}}</p>
+      <h1 class="trip-hero__title">{{{titleHtml}}}</h1>
+      <p class="trip-hero__desc">{{p.shortDescription}}</p>
+      <div class="trip-hero__actions">
+        <a class="btn btn--primary btn--lg" href="#plan"><svg class="icon"><use href="#i-whatsapp"/></svg> Plan this trip</a>
+        <a class="btn btn--light btn--lg" href="#itinerary">Day-by-day route <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+  {{svg hero-silhouettes}}
+</section>
+
+<div class="container">
+  <dl class="facts">
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-clock"/></svg>Duration</dt><dd class="fact__value">{{p.nights}} Nights / {{p.days}} Days</dd></div>
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-pin"/></svg>Starts from</dt><dd class="fact__value">{{p.startCity}}</dd></div>
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-route"/></svg>Route</dt><dd class="fact__value">{{citiesLine}}</dd></div>
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-meal"/></svg>Meals</dt><dd class="fact__value">{{p.mealPlan}}</dd></div>
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-users"/></svg>Group size</dt><dd class="fact__value">Min. {{p.minPeople}} travellers</dd></div>
+    <div class="fact"><dt class="fact__label meta"><svg class="icon"><use href="#i-star"/></svg>Best for</dt><dd class="fact__value">{{themesLine}}</dd></div>
+  </dl>
+</div>
+
+<div class="container trip-layout">
+  <div class="trip-main">
+
+    <section class="overview" aria-labelledby="overview-title" data-reveal>
+      <p class="eyebrow">The trip</p>
+      <h2 class="block-title" id="overview-title">Why you'll <span class="accent">love</span> it</h2>
+      <p>{{p.shortDescription}}</p>
+      <div class="chips">{{{themeChips}}}</div>
+    </section>
+
+    <section aria-labelledby="gallery-title" data-reveal>
+      <p class="eyebrow">Postcards</p>
+      <h2 class="block-title" id="gallery-title">A glimpse of the journey</h2>
+      <div class="gallery" data-items="{{galleryCount}}">{{{galleryHtml}}}</div>
+    </section>
+
+    <section id="itinerary" aria-labelledby="itinerary-title">
+      <p class="eyebrow">Day by day</p>
+      <h2 class="block-title" id="itinerary-title">Your <span class="accent">route</span>, stop by stop</h2>
+      <ol class="journey" data-journey>
+        {{{itineraryHtml}}}
+        <li class="journey__end"><span class="journey__num" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Journey complete — with stories to tell.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="incl-title" data-reveal>
+      <p class="eyebrow">The fine print, made simple</p>
+      <h2 class="block-title" id="incl-title">What's in the package</h2>
+      <div class="incl">
+        <div class="incl__card incl__card--yes">
+          <h3>Included</h3>
+          <ul class="incl__list">{{{inclusionsHtml}}}</ul>
+        </div>
+        <div class="incl__card incl__card--no">
+          <h3>Not included</h3>
+          <ul class="incl__list">{{{exclusionsHtml}}}</ul>
+        </div>
+      </div>
+      <p class="note">Prices are per person on twin-sharing and may change with season, hotel availability and group size. Final quote is confirmed on WhatsApp before you pay anything.</p>
+    </section>
+  </div>
+
+  <aside class="trip-aside" id="plan" aria-label="Price and trip planner">
+    <div class="bpass" data-reveal>
+      <div class="bpass__top on-navy">
+        <div class="bpass__head">
+          <span class="meta">Boarding pass</span>
+          <span class="bpass__no">{{ticketNo}}</span>
+        </div>
+        <div class="bpass__route">
+          <div class="bpass__city"><span class="meta">From</span><strong>{{p.startCity}}</strong></div>
+          <div class="bpass__path"><svg class="icon"><use href="#i-route"/></svg></div>
+          <div class="bpass__city"><span class="meta">To</span><strong>{{destShort}}</strong></div>
+        </div>
+        <div class="bpass__fields">
+          <div><span class="meta">Duration</span><strong>{{p.nights}}N / {{p.days}}D</strong></div>
+          <div><span class="meta">Travellers</span><strong>Min. {{p.minPeople}}</strong></div>
+          <div><span class="meta">Meals</span><strong>{{mealShort}}</strong></div>
+          <div><span class="meta">Departs</span><strong>Any day</strong></div>
+        </div>
+      </div>
+      <div class="bpass__perf" aria-hidden="true"></div>
+      <div class="bpass__stub">
+        <div class="bpass__price">
+          <div class="price">
+            <span class="price__label">Per person from</span>
+            {{{wasHtml}}}
+            <span class="price__now">{{priceNow}}</span>
+          </div>
+          {{{saveHtml}}}
+        </div>
+
+        <div class="planner" data-wa-planner data-wa-number="{{site.whatsapp}}" data-wa-brand="{{site.name}}" data-wa-title="{{p.title}}" data-wa-duration="{{p.nights}}N/{{p.days}}D" data-wa-url="{{canonical}}">
+          <label class="field">
+            <span>Travel month</span>
+            <select class="select" data-wa-month>
+              <option value="">Flexible</option>
+            </select>
+          </label>
+          <div class="field">
+            <span id="people-label">Travellers</span>
+            <div class="stepper" role="group" aria-labelledby="people-label">
+              <button type="button" data-step="-1" aria-label="Fewer travellers"><svg class="icon"><use href="#i-minus"/></svg></button>
+              <input type="number" inputmode="numeric" value="{{defaultPeople}}" min="1" max="50" data-wa-people aria-labelledby="people-label">
+              <button type="button" data-step="1" aria-label="More travellers"><svg class="icon"><use href="#i-plus"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <a class="btn btn--primary btn--lg btn--block" href="{{waTrip}}" target="_blank" rel="noopener" data-wa-link>
+          <svg class="icon"><use href="#i-whatsapp"/></svg> Plan this trip on WhatsApp
+        </a>
+        <p class="bpass__assure"><svg class="icon"><use href="#i-shield"/></svg><span>No payment to enquire. Talk to a real person in {{site.address.city}} and customise hotels, dates or route.</span></p>
+        <a class="bpass__call" href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> Prefer a call? {{site.phone}}</a>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div class="container"><div class="divider" aria-hidden="true">{{svg rangoli}}</div></div>
+
+{{{relatedSection}}}
+
+<section class="section section--cv" style="padding-top:clamp(2rem,1rem + 3vw,4rem)">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      {{svg rangoli}}
+      <div>
+        <p class="eyebrow">Make it yours</p>
+        <h2>Want different hotels, dates or <span class="accent">one more day?</span></h2>
+        <p style="margin-top:12px">Every itinerary is a starting point. Tell us what you have in mind and we'll reshape this trip around you.</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary btn--lg" href="{{waTrip}}" target="_blank" rel="noopener" data-wa-link><svg class="icon"><use href="#i-whatsapp"/></svg> Customise on WhatsApp</a>
+        <a class="btn btn--light btn--lg" href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> Call us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo gallery">
+  <div class="lightbox__top">
+    <span class="meta" style="color:var(--navy-200)" data-lb-count></span>
+    <button class="icon-btn" type="button" data-lb-close aria-label="Close gallery"><svg class="icon"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="lightbox__stage"><img alt="" width="1600" height="1067"></div>
+  <div class="lightbox__nav">
+    <button class="icon-btn" type="button" data-lb-prev aria-label="Previous photo"><svg class="icon"><use href="#i-chev-left"/></svg></button>
+    <button class="icon-btn" type="button" data-lb-next aria-label="Next photo"><svg class="icon"><use href="#i-chev-right"/></svg></button>
+  </div>
+</dialog>

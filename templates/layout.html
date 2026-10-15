@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="robots" content="{{robots}}">
+  {{{canonicalTag}}}
+  <meta name="theme-color" content="#0B2D50">
+
+  <meta property="og:type" content="{{ogType}}">
+  <meta property="og:site_name" content="{{site.name}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta property="og:image" content="{{ogImage}}">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts load without blocking first paint; text shows in the fallback font for a moment. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+  {{{preload}}}
+  <link rel="stylesheet" href="/assets/css/main.css?v={{assetVersion}}">
+  <script>document.documentElement.classList.add('js')</script>
+  {{{jsonld}}}
+</head>
+<body class="{{bodyClass}}">
+  {{svg icons}}
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="/" aria-label="{{site.name}} — home">
+        {{svg logo-mark}}
+        <span class="logo__text"><span class="logo__name">{{site.name}}</span><span class="logo__tag">{{site.tagline}}</span></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="/tours/">Tour Packages</a></li>
+          <li><a class="nav__link" href="/#states">Destinations</a></li>
+          <li><a class="nav__link" href="/#themes">Themes</a></li>
+          <li><a class="nav__link" href="/about/">About</a></li>
+          <li><a class="nav__link" href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--sm header-cta" href="{{waGeneral}}" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#i-whatsapp"/></svg> Plan on WhatsApp
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-toggle__bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu__list">
+      <li><a href="/" style="--i:0"><small>01</small> Home</a></li>
+      <li><a href="/tours/" style="--i:1"><small>02</small> Tour Packages</a></li>
+      <li><a href="/#states" style="--i:2"><small>03</small> Destinations</a></li>
+      <li><a href="/#themes" style="--i:3"><small>04</small> Themes</a></li>
+      <li><a href="/about/" style="--i:4"><small>05</small> About</a></li>
+      <li><a href="/contact/" style="--i:5"><small>06</small> Contact</a></li>
+    </ul>
+    <div class="mobile-menu__foot">
+      <a class="btn btn--primary btn--lg btn--block" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> Plan on WhatsApp</a>
+      <a href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> {{site.phone}}</a>
+      <a href="mailto:{{site.email}}"><svg class="icon"><use href="#i-mail"/></svg> {{site.email}}</a>
+    </div>
+  </div>
+
+  <main id="main">
+{{{content}}}
+  </main>
+
+  <footer class="site-footer on-navy">
+    {{svg route-footer}}
+    <div class="container">
+      <p class="footer__signoff">Every great journey starts with <span class="accent">chalo.</span></p>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="logo" href="/" aria-label="{{site.name}} — home">
+            {{svg logo-mark}}
+            <span class="logo__text"><span class="logo__name">{{site.name}}</span><span class="logo__tag">{{site.tagline}}</span></span>
+          </a>
+          <p>{{site.description}}</p>
+          {{{socialLinks}}}
+        </div>
+        <div class="footer__col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/tours/">All tour packages</a></li>
+            {{{footerStates}}}
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h2>Company</h2>
+          <ul>
+            <li><a href="/about/">About us</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/faq/">FAQ</a></li>
+            <li><a href="/privacy-policy/">Privacy policy</a></li>
+            <li><a href="/terms/">Terms &amp; conditions</a></li>
+            <li><a href="/cancellation-refund/">Cancellation &amp; refund</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__contact">
+          <h2>Talk to us</h2>
+          <ul>
+            <li><a href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> WhatsApp us</a></li>
+            <li><a href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> {{site.phone}}</a></li>
+            <li><a href="mailto:{{site.email}}"><svg class="icon"><use href="#i-mail"/></svg> <span style="overflow-wrap:anywhere">{{site.email}}</span></a></li>
+            <li><a href="/contact/"><svg class="icon"><use href="#i-pin"/></svg> {{site.address.city}}, {{site.address.region}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© {{year}} {{site.legalName}}. All rights reserved.</span>
+      <span>Planned with care in {{site.address.city}}, India.</span>
+    </div>
+  </footer>
+
+  <div class="fab">
+    <a class="fab__call" href="tel:{{phoneHref}}" aria-label="Call {{site.name}}"><svg class="icon"><use href="#i-phone"/></svg></a>
+    <a class="fab__wa" href="{{waGeneral}}" target="_blank" rel="noopener" aria-label="Chat with {{site.name}} on WhatsApp"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
+  </div>
+
+  {{{afterFooter}}}
+  <script src="/assets/js/main.js?v={{assetVersion}}" defer></script>
+</body>
+</html>

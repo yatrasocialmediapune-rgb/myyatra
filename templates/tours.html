@@ -1,0 +1,80 @@
+<section class="page-hero">
+  {{svg rangoli}}
+  <div class="container">
+    <div class="page-hero__content">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Tour packages</span></li></ol></nav>
+      <p class="eyebrow">All journeys</p>
+      <h1>Tour packages across <span class="accent">India</span></h1>
+      <p class="lede">{{packageCount}} handpicked trips across {{stateCount}} states. Filter by theme, budget or trip length, then plan the details with us on WhatsApp.</p>
+      <div class="searchbox">
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input type="search" id="tour-search" placeholder="Search Kashmir, temples, houseboat…" aria-label="Search tours" autocomplete="off" list="destinations">
+        <datalist id="destinations">{{{destinationOptions}}}</datalist>
+      </div>
+    </div>
+  </div>
+  {{svg hero-silhouettes}}
+</section>
+
+<div class="container listing" data-listing>
+  <div class="sheet-backdrop" data-sheet-close></div>
+  <aside class="filters" id="filters" aria-label="Filters" data-filters>
+    <div class="filters__head">
+      <h2>Filters</h2>
+      <button class="icon-btn" type="button" data-sheet-close aria-label="Close filters"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="filters__body">
+      <fieldset>
+        <legend class="meta">State</legend>
+        {{{stateFilters}}}
+      </fieldset>
+      <fieldset>
+        <legend class="meta">Theme</legend>
+        {{{themeFilters}}}
+      </fieldset>
+      <fieldset>
+        <legend class="meta">Duration</legend>
+        {{{durationFilters}}}
+      </fieldset>
+      <fieldset>
+        <legend class="meta">Budget per person</legend>
+        {{{budgetFilters}}}
+      </fieldset>
+      <button class="filters__reset" type="button" data-reset>Clear all filters</button>
+    </div>
+    <div class="filters__foot">
+      <button class="btn btn--outline" type="button" data-reset>Clear</button>
+      <button class="btn btn--primary" type="button" data-sheet-close>Show <span data-count-label>{{packageCount}}</span> trips</button>
+    </div>
+  </aside>
+
+  <div class="results">
+    <div class="toolbar">
+      <p class="toolbar__count" aria-live="polite"><strong data-count-label>{{packageCount}}</strong> trips found</p>
+      <div class="toolbar__right">
+        <button class="filter-btn" type="button" data-sheet-open aria-controls="filters" aria-expanded="false">
+          <svg class="icon"><use href="#i-grid"/></svg> Filters <span class="badge" data-filter-badge hidden>0</span>
+        </button>
+        <label class="sr-only" for="sort">Sort by</label>
+        <select class="select" id="sort" data-sort>
+          <option value="recommended">Recommended</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="days-asc">Duration: shortest</option>
+          <option value="days-desc">Duration: longest</option>
+        </select>
+      </div>
+    </div>
+    <div class="active-filters" data-active></div>
+    <ul class="cards-grid cards-grid--3" role="list" data-results>{{{cards}}}</ul>
+    <div class="empty" data-empty hidden>
+      {{svg rangoli}}
+      <h2>No trips match… <span class="accent">yet</span></h2>
+      <p>Try removing a filter, or tell us where you'd like to go and we'll build a custom itinerary for you.</p>
+      <div class="empty__actions">
+        <button class="btn btn--outline" type="button" data-reset>Clear filters</button>
+        <a class="btn btn--primary" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> Ask for a custom trip</a>
+      </div>
+    </div>
+  </div>
+</div>

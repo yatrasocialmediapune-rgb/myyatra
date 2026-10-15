@@ -1,0 +1,23 @@
+<div class="pcard-wrap" data-reveal style="--i:{{i}}">
+<article class="pcard">
+  <div class="pcard__media">
+    {{{image}}}
+    <span class="stamp"><span>{{stateShort}}</span></span>
+    {{{flag}}}
+    <span class="pcard__duration"><svg class="icon"><use href="#i-clock"/></svg>{{nights}}N / {{days}}D</span>
+  </div>
+  <div class="pcard__body">
+    <p class="meta">{{metaLine}}</p>
+    <h3 class="pcard__title"><a href="{{url}}">{{title}}</a></h3>
+    <p class="pcard__route">{{{routeHtml}}}</p>
+  </div>
+  <div class="pcard__stub">
+    <div class="price">
+      <span class="price__label">Per person from</span>
+      {{{wasHtml}}}
+      <span class="price__now">{{priceNow}}</span>
+    </div>
+    <span class="pcard__go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
+  </div>
+</article>
+</div>
