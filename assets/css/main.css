@@ -1007,3 +1007,11 @@ textarea.input { padding: 12px 14px; min-height: 110px; resize: vertical; }
 .stepper input { height: 44px; }
 .link-arrow, .breadcrumbs a { position: relative; }
 .link-arrow::after, .breadcrumbs a::after { content: ""; position: absolute; inset: -13px -6px; }
+
+/* ---------- 36. Brand logo image (colour on white, white+orange on navy) ---------- */
+.logo__img { display: block; height: 44px; width: auto; }
+@media (min-width: 47.5em) { .logo__img { height: 52px; } }
+.logo__img--light { display: none; }
+.has-hero .site-header:not(.is-scrolled) .logo__img--dark, .menu-open .site-header .logo__img--dark { display: none; }
+.has-hero .site-header:not(.is-scrolled) .logo__img--light, .menu-open .site-header .logo__img--light { display: block; }
+.site-footer .logo__img { height: 60px; }

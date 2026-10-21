@@ -1,4 +1,4 @@
-# My Yatra — Journeys Through India
+# My Yatra — Miles of Smiles
 
 Static website and admin panel for **My Yatra**, an India-only tour packages business in Pune.
 

@@ -172,7 +172,7 @@
     var v = values || {};
     app.innerHTML =
       '<main class="setup"><form class="setup__card" id="setup" autocomplete="off">' +
-      '<div class="setup__brand">' + logo() + '<div><p class="meta">My Yatra</p><h1>Admin setup</h1></div></div>' +
+      '<div class="setup__brand"><img src="/assets/img/logo.webp" width="413" height="120" alt="My Yatra"><h1>Admin setup</h1></div>' +
       '<p>Connect this panel to the GitHub repository that holds your website. Saving here commits to GitHub and Cloudflare Pages republishes the site in about a minute.</p>' +
       (err ? '<p class="toast toast--err" style="animation:none;max-width:none">' + esc(err) + '</p>' : '') +
       '<div class="grid2">' +
@@ -218,7 +218,7 @@
       control + (hint ? '<small>' + hint + '</small>' : '') + '<span class="f__err"></span></div>';
   }
   function logo() {
-    return '<svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#F7941D"/><path d="M6 33c6-9 10-13 14-13s6 5 10 5 7-5 12-11" fill="none" stroke="#0B2D50" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.1 5"/><path d="M5 37 17 23l6 7 6-9 14 16a22 22 0 0 1-38 0Z" fill="#0B2D50"/><circle cx="35" cy="14" r="3.4" fill="#fff"/></svg>';
+    return '<svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#0B2D50"/><path d="M8.5 34C10.5 22 22 14.5 36 15.5 25 17.5 16.5 24 13.5 37.5Z" fill="#F7941D"/><g transform="translate(31.5 15) rotate(-32) scale(.95)" fill="#FFFFFF"><path d="M-8.5-1.3H6Q9.5 0 6 1.3H-8.5Q-9.5 0-8.5-1.3Z"/><path d="M-1.5-1.2-5-7.5h2.4L3-1.2Zm0 2.4L-5 7.5h2.4L3 1.2Z"/><path d="M-7.5-1.2-9.5-4.6H-8l2.5 3.4Zm0 2.4-2 3.4H-8l2.5-3.4Z"/></g></svg>';
   }
 
   /* ==========================================================================
@@ -234,7 +234,7 @@
     app.innerHTML =
       '<div class="shell">' +
       '<aside class="side" aria-label="Admin navigation">' +
-      '<a class="logo" href="#/dashboard">' + logo() + '<span class="logo__text"><span class="logo__name">My Yatra</span><span class="logo__tag">Admin</span></span></a>' +
+      '<a class="logo side__logo" href="#/dashboard" aria-label="Dashboard"><img src="/assets/img/logo-light.webp" width="413" height="120" alt=""><span class="meta">Admin</span></a>' +
       NAV.map(function (n) { return '<a class="nav-item" href="' + n[0] + '">' + icon(n[1]) + (n[0] === '#/new' ? 'New package' : n[2]) + '</a>'; }).join('') +
       '<div class="side__foot"><span class="side__repo">' + icon('a-key') + ' ' + esc(S.cfg.owner + '/' + S.cfg.repo) + ' · ' + esc(S.cfg.branch) + '</span>' +
       '<a href="/" target="_blank" rel="noopener">' + icon('a-ext') + ' View website</a>' +

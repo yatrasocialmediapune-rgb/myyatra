@@ -248,3 +248,8 @@
 @media (min-width: 30em) { .hide-sm { display: inline; } }
 @media (max-width: 29.99em) { .topbar .btn--sm { padding-inline: .9em; } }
 .setup summary { min-height: 44px; display: flex; align-items: center; }
+.setup__brand { display: grid; gap: 14px; justify-items: start; }
+.setup__brand img { height: 56px; width: auto; }
+.side__logo { display: grid; gap: 6px; justify-items: start; }
+.side__logo img { height: 48px; width: auto; }
+.side__logo .meta { color: var(--orange); padding-left: 4px; }

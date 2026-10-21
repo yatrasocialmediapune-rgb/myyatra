@@ -36,8 +36,8 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="logo" href="/" aria-label="{{site.name}} — home">
-        {{svg logo-mark}}
-        <span class="logo__text"><span class="logo__name">{{site.name}}</span><span class="logo__tag">{{site.tagline}}</span></span>
+        <img class="logo__img logo__img--dark" src="/assets/img/logo.webp" width="413" height="120" alt="">
+        <img class="logo__img logo__img--light" src="/assets/img/logo-light.webp" width="413" height="120" alt="">
       </a>
       <nav class="nav" aria-label="Main">
         <ul class="nav__list">
@@ -84,8 +84,7 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <a class="logo" href="/" aria-label="{{site.name}} — home">
-            {{svg logo-mark}}
-            <span class="logo__text"><span class="logo__name">{{site.name}}</span><span class="logo__tag">{{site.tagline}}</span></span>
+            <img class="logo__img" src="/assets/img/logo-light.webp" width="413" height="120" alt="" loading="lazy">
           </a>
           <p>{{site.description}}</p>
           {{{socialLinks}}}
