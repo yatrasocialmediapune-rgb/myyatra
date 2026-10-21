@@ -18,8 +18,9 @@ Static website and admin panel for **My Yatra**, an India-only tour packages bus
 5. [Protect /admin with Cloudflare Access](#4-protect-admin-with-cloudflare-access)
 6. [Add or edit packages and images](#5-add-or-edit-packages-and-images)
 7. [Before you launch: checklist](#before-you-launch-checklist)
-8. [How it works (for developers)](#how-it-works-for-developers)
-9. [Troubleshooting](#troubleshooting)
+8. [Languages: English, Marathi, Hindi](#languages-english-marathi-hindi)
+9. [How it works (for developers)](#how-it-works-for-developers)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -28,10 +29,11 @@ Static website and admin panel for **My Yatra**, an India-only tour packages bus
 ```
 data/packages.json      All tour packages (single source of truth)
 data/site.json          Brand name, phone, WhatsApp, email, address, socials, stats, testimonials, FAQs
+data/i18n/              Website text for each language: en.json, mr.json (Marathi), hi.json (Hindi)
 images/                 Package photos (WebP). The included .svg files are placeholder artwork.
 templates/              HTML templates: layout, home, tours, package, collection (state/theme), page, 404
 templates/partials/     Reusable pieces (the package card)
-templates/pages/        Body content for About, Contact, FAQ and the policy pages
+templates/pages/{lang}/ Body content for About, Contact, FAQ and the policy pages, per language (en, mr, hi)
 admin/                  Admin panel (index.html, admin.js, admin.css), copied to /dist/admin as-is
 assets/css/main.css     Design system: tokens, components, page styles
 assets/js/main.js       Site behaviour (menu, reveal, parallax, itinerary route, gallery, WhatsApp planner)
@@ -51,6 +53,7 @@ Pages that `build.js` generates:
 | `/states/{state}/` | Packages in a state (only for states that have packages) |
 | `/themes/{theme}/` | Packages for a theme (empty themes show "coming soon" and are `noindex`) |
 | `/about/`, `/contact/`, `/faq/` | Static pages |
+| `/mr/…`, `/hi/…` | The same pages in Marathi and Hindi (every page above exists in all three languages) |
 | `/privacy-policy/`, `/terms/`, `/cancellation-refund/` | Policy pages (placeholder text) |
 | `/404.html` | Custom "lost boarding pass" page |
 | `/sitemap.xml`, `/robots.txt`, `/_headers` | SEO and Cloudflare caching/security headers |
@@ -256,7 +259,7 @@ Edit `data/packages.json`, then commit and push. Each package looks like this:
 
 - [ ] **Testimonials** in `site.json` are marked `"sample": true`. Replace them with **real reviews** (with permission) or delete them. Never publish invented reviews.
 - [ ] **Home page numbers** (`stats.travellers`, `stats.yearsPlanning`) reflect reality.
-- [ ] **Policy pages** (`templates/pages/privacy-policy.html`, `terms.html`, `cancellation-refund.html`) are reviewed. The cancellation percentages are examples only.
+- [ ] **Policy pages** (`templates/pages/en/privacy-policy.html`, `terms.html`, `cancellation-refund.html`) are reviewed. The cancellation percentages are examples only.
 - [ ] **About page** story: replace the placeholder callout in `templates/pages/about.html`.
 - [ ] **Social preview image:** WhatsApp, Facebook and others don't display SVG. Add a 1200×630 JPG or PNG (e.g. `images/og-default.jpg`) and set `defaultOgImage` in `site.json`. Package pages use their cover image, so use real JPG/WebP photos there.
 - [ ] **Socials**, **street address** and **PIN code** are filled in (Admin → Site settings).
@@ -264,6 +267,35 @@ Edit `data/packages.json`, then commit and push. Each package looks like this:
 - [ ] Sitemap submitted in Google Search Console.
 
 ---
+
+## Languages: English, Marathi, Hindi
+
+The site is built three times from the same templates:
+
+| Language | Address | Example |
+| --- | --- | --- |
+| English | `/` | `/tours/kerala-hills-and-backwaters-5n-6d/` |
+| मराठी (Marathi) | `/mr/` | `/mr/tours/kerala-hills-and-backwaters-5n-6d/` |
+| हिंदी (Hindi) | `/hi/` | `/hi/tours/kerala-hills-and-backwaters-5n-6d/` |
+
+- The globe button in the header (and the pills in the mobile menu) switches language and stays on the same page.
+- Each page tells Google about its other languages with `hreflang` links, and all three versions are in `sitemap.xml`.
+- Marathi and Hindi pages load Devanagari fonts (Noto Serif Devanagari for headings, Mukta for text); English pages don't.
+- WhatsApp messages from a Marathi or Hindi page are written in that language.
+
+**Where the text lives**
+
+| Text | File | How to edit |
+| --- | --- | --- |
+| Buttons, menus, headings, labels | `data/i18n/en.json`, `mr.json`, `hi.json` | Edit the JSON (same keys in each file). A key missing from `mr.json`/`hi.json` falls back to English |
+| Package text (title, description, itinerary, inclusions…) | `translations` inside each package in `packages.json` | **Admin → package → Translations** (मराठी / हिंदी tabs) |
+| Site description, hours, FAQs, testimonials | `translations` in `site.json` | **Admin → Site settings → Translations** |
+| About / Contact / FAQ page bodies | `templates/pages/mr/`, `templates/pages/hi/` | Edit the HTML |
+| Policy pages | `templates/pages/en/` only | Marathi/Hindi pages show the English policy with a short note until you add `templates/pages/mr/terms.html` etc. |
+
+Anything not translated simply shows in English, so a new package can go live in English first and be translated later. In the admin panel, the counter on each language tab (e.g. **मराठी 12/12**) shows how much of a package is translated.
+
+> The Marathi and Hindi text was written as a first draft. Please have a native speaker read through it before promoting the site.
 
 ## How it works (for developers)
 

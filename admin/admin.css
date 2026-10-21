@@ -253,3 +253,14 @@
 .side__logo { display: grid; gap: 6px; justify-items: start; }
 .side__logo img { height: 48px; width: auto; }
 .side__logo .meta { color: var(--orange); padding-left: 4px; }
+
+/* ---------- Translation tabs ---------- */
+.tabs { display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--navy-50); width: max-content; max-width: 100%; }
+.tab { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; font-weight: 800; color: var(--navy-700); }
+.tab[aria-selected="true"] { background: var(--navy); color: var(--white); }
+.tab__count { font-size: .72rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: var(--orange-100); color: var(--navy); }
+.tab__count.is-done { background: var(--orange); }
+.tab__count:empty { display: none; }
+.tr-ref { display: block; font-size: .8rem; color: var(--ink-soft); line-height: 1.45; padding: 6px 10px; border-left: 3px solid var(--navy-100); background: var(--navy-50); border-radius: 0 6px 6px 0; }
+.tr-ref b { color: var(--navy-700); font-weight: 800; }
+.admin [lang="mr"], .admin [lang="hi"] { font-family: "Manrope", "Mukta", system-ui, sans-serif; }

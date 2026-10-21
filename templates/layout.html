@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-IN">
+<html lang="{{L.locale}}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,6 +7,7 @@
   <meta name="description" content="{{description}}">
   <meta name="robots" content="{{robots}}">
   {{{canonicalTag}}}
+  {{{alternates}}}
   <meta name="theme-color" content="#0B2D50">
 
   <meta property="og:type" content="{{ogType}}">
@@ -15,59 +16,66 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:url" content="{{canonical}}">
   <meta property="og:image" content="{{ogImage}}">
-  <meta property="og:locale" content="en_IN">
+  <meta property="og:locale" content="{{L.og}}">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Fonts load without blocking first paint; text shows in the fallback font for a moment. -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+  <link rel="preload" as="style" href="{{fontUrl}}" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{fontUrl}}"></noscript>
   {{{preload}}}
   <link rel="stylesheet" href="/assets/css/main.css?v={{assetVersion}}">
   <script>document.documentElement.classList.add('js')</script>
   {{{jsonld}}}
 </head>
-<body class="{{bodyClass}}">
+<body class="{{bodyClass}} lang-{{L.code}}">
   {{svg icons}}
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">{{t.a11y.skip}}</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="logo" href="/" aria-label="{{site.name}} — home">
+      <a class="logo" href="{{home}}" aria-label="{{t.a11y.home}}">
         <img class="logo__img logo__img--dark" src="/assets/img/logo.webp" width="413" height="120" alt="">
         <img class="logo__img logo__img--light" src="/assets/img/logo-light.webp" width="413" height="120" alt="">
       </a>
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" aria-label="{{t.a11y.mainNav}}">
         <ul class="nav__list">
-          <li><a class="nav__link" href="/tours/">Tour Packages</a></li>
-          <li><a class="nav__link" href="/#states">Destinations</a></li>
-          <li><a class="nav__link" href="/#themes">Themes</a></li>
-          <li><a class="nav__link" href="/about/">About</a></li>
-          <li><a class="nav__link" href="/contact/">Contact</a></li>
+          <li><a class="nav__link" href="{{lp}}/tours/">{{t.nav.tours}}</a></li>
+          <li><a class="nav__link" href="{{home}}#states">{{t.nav.destinations}}</a></li>
+          <li><a class="nav__link" href="{{home}}#themes">{{t.nav.themes}}</a></li>
+          <li><a class="nav__link" href="{{lp}}/about/">{{t.nav.about}}</a></li>
+          <li><a class="nav__link" href="{{lp}}/contact/">{{t.nav.contact}}</a></li>
         </ul>
       </nav>
-      <a class="btn btn--primary btn--sm header-cta" href="{{waGeneral}}" target="_blank" rel="noopener">
-        <svg class="icon"><use href="#i-whatsapp"/></svg> Plan on WhatsApp
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span class="menu-toggle__bars"><span></span><span></span><span></span></span>
-      </button>
+      <div class="header-actions">
+        <details class="lang">
+          <summary aria-label="{{t.a11y.language}}: {{t.lang.label}}"><svg class="icon"><use href="#i-globe"/></svg><span>{{t.lang.short}}</span><svg class="icon lang__chev"><use href="#i-chev-down"/></svg></summary>
+          <ul class="lang__list" role="list">{{{langLinks}}}</ul>
+        </details>
+        <a class="btn btn--primary btn--sm header-cta" href="{{waGeneral}}" target="_blank" rel="noopener">
+          <svg class="icon"><use href="#i-whatsapp"/></svg> {{t.cta.planOnWhatsApp}}
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="{{t.a11y.openMenu}}">
+          <span class="menu-toggle__bars"><span></span><span></span><span></span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobile-menu">
     <ul class="mobile-menu__list">
-      <li><a href="/" style="--i:0"><small>01</small> Home</a></li>
-      <li><a href="/tours/" style="--i:1"><small>02</small> Tour Packages</a></li>
-      <li><a href="/#states" style="--i:2"><small>03</small> Destinations</a></li>
-      <li><a href="/#themes" style="--i:3"><small>04</small> Themes</a></li>
-      <li><a href="/about/" style="--i:4"><small>05</small> About</a></li>
-      <li><a href="/contact/" style="--i:5"><small>06</small> Contact</a></li>
+      <li><a href="{{home}}" style="--i:0"><small>01</small> {{t.nav.home}}</a></li>
+      <li><a href="{{lp}}/tours/" style="--i:1"><small>02</small> {{t.nav.tours}}</a></li>
+      <li><a href="{{home}}#states" style="--i:2"><small>03</small> {{t.nav.destinations}}</a></li>
+      <li><a href="{{home}}#themes" style="--i:3"><small>04</small> {{t.nav.themes}}</a></li>
+      <li><a href="{{lp}}/about/" style="--i:4"><small>05</small> {{t.nav.about}}</a></li>
+      <li><a href="{{lp}}/contact/" style="--i:5"><small>06</small> {{t.nav.contact}}</a></li>
     </ul>
     <div class="mobile-menu__foot">
-      <a class="btn btn--primary btn--lg btn--block" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> Plan on WhatsApp</a>
+      <ul class="lang-pills" role="list" aria-label="{{t.a11y.language}}">{{{langLinks}}}</ul>
+      <a class="btn btn--primary btn--lg btn--block" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.cta.planOnWhatsApp}}</a>
       <a href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> {{site.phone}}</a>
       <a href="mailto:{{site.email}}"><svg class="icon"><use href="#i-mail"/></svg> {{site.email}}</a>
     </div>
@@ -80,56 +88,57 @@
   <footer class="site-footer on-navy">
     {{svg route-footer}}
     <div class="container">
-      <p class="footer__signoff">Every great journey starts with <span class="accent">chalo.</span></p>
+      <p class="footer__signoff">{{{t.footer.signoff}}}</p>
       <div class="footer__grid">
         <div class="footer__brand">
-          <a class="logo" href="/" aria-label="{{site.name}} — home">
+          <a class="logo" href="{{home}}" aria-label="{{t.a11y.home}}">
             <img class="logo__img" src="/assets/img/logo-light.webp" width="413" height="120" alt="" loading="lazy">
           </a>
-          <p>{{site.description}}</p>
+          <p>{{siteL.description}}</p>
           {{{socialLinks}}}
         </div>
         <div class="footer__col">
-          <h2>Explore</h2>
+          <h2>{{t.footer.explore}}</h2>
           <ul>
-            <li><a href="/tours/">All tour packages</a></li>
+            <li><a href="{{lp}}/tours/">{{t.footer.allTours}}</a></li>
             {{{footerStates}}}
           </ul>
         </div>
         <div class="footer__col">
-          <h2>Company</h2>
+          <h2>{{t.footer.company}}</h2>
           <ul>
-            <li><a href="/about/">About us</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li><a href="/faq/">FAQ</a></li>
-            <li><a href="/privacy-policy/">Privacy policy</a></li>
-            <li><a href="/terms/">Terms &amp; conditions</a></li>
-            <li><a href="/cancellation-refund/">Cancellation &amp; refund</a></li>
+            <li><a href="{{lp}}/about/">{{t.footer.aboutUs}}</a></li>
+            <li><a href="{{lp}}/contact/">{{t.footer.contact}}</a></li>
+            <li><a href="{{lp}}/faq/">{{t.footer.faq}}</a></li>
+            <li><a href="{{lp}}/privacy-policy/">{{t.footer.privacy}}</a></li>
+            <li><a href="{{lp}}/terms/">{{t.footer.terms}}</a></li>
+            <li><a href="{{lp}}/cancellation-refund/">{{t.footer.cancellation}}</a></li>
           </ul>
         </div>
         <div class="footer__col footer__contact">
-          <h2>Talk to us</h2>
+          <h2>{{t.footer.talk}}</h2>
           <ul>
-            <li><a href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> WhatsApp us</a></li>
+            <li><a href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.footer.whatsappUs}}</a></li>
             <li><a href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> {{site.phone}}</a></li>
             <li><a href="mailto:{{site.email}}"><svg class="icon"><use href="#i-mail"/></svg> <span style="overflow-wrap:anywhere">{{site.email}}</span></a></li>
-            <li><a href="/contact/"><svg class="icon"><use href="#i-pin"/></svg> {{site.address.city}}, {{site.address.region}}</a></li>
+            <li><a href="{{lp}}/contact/"><svg class="icon"><use href="#i-pin"/></svg> {{siteL.address.city}}, {{siteL.address.region}}</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="container footer__bottom">
-      <span>© {{year}} {{site.legalName}}. All rights reserved.</span>
-      <span>Planned with care in {{site.address.city}}, India.</span>
+      <span>© {{year}} {{site.legalName}}. {{t.footer.rights}}</span>
+      <span>{{t.footer.plannedIn}}</span>
     </div>
   </footer>
 
   <div class="fab">
-    <a class="fab__call" href="tel:{{phoneHref}}" aria-label="Call {{site.name}}"><svg class="icon"><use href="#i-phone"/></svg></a>
-    <a class="fab__wa" href="{{waGeneral}}" target="_blank" rel="noopener" aria-label="Chat with {{site.name}} on WhatsApp"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
+    <a class="fab__call" href="tel:{{phoneHref}}" aria-label="{{t.a11y.callBrand}}"><svg class="icon"><use href="#i-phone"/></svg></a>
+    <a class="fab__wa" href="{{waGeneral}}" target="_blank" rel="noopener" aria-label="{{t.a11y.chatBrand}}"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
   </div>
 
   {{{afterFooter}}}
+  <script type="application/json" id="i18n">{{{jsStrings}}}</script>
   <script src="/assets/js/main.js?v={{assetVersion}}" defer></script>
 </body>
 </html>

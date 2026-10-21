@@ -2,13 +2,13 @@
   {{svg rangoli}}
   <div class="container">
     <div class="page-hero__content">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Tour packages</span></li></ol></nav>
-      <p class="eyebrow">All journeys</p>
-      <h1>Tour packages across <span class="accent">India</span></h1>
-      <p class="lede">{{packageCount}} handpicked trips across {{stateCount}} states. Filter by theme, budget or trip length, then plan the details with us on WhatsApp.</p>
+      <nav class="breadcrumbs" aria-label="{{t.a11y.breadcrumb}}"><ol><li><a href="{{home}}">{{t.nav.home}}</a></li><li><span aria-current="page">{{t.tours.crumb}}</span></li></ol></nav>
+      <p class="eyebrow">{{t.tours.eyebrow}}</p>
+      <h1>{{{t.tours.title}}}</h1>
+      <p class="lede">{{lede}}</p>
       <div class="searchbox">
         <svg class="icon"><use href="#i-search"/></svg>
-        <input type="search" id="tour-search" placeholder="Search Kashmir, temples, houseboat…" aria-label="Search tours" autocomplete="off" list="destinations">
+        <input type="search" id="tour-search" placeholder="{{t.tours.searchPlaceholder}}" aria-label="{{t.tours.searchAria}}" autocomplete="off" list="destinations">
         <datalist id="destinations">{{{destinationOptions}}}</datalist>
       </div>
     </div>
@@ -18,50 +18,50 @@
 
 <div class="container listing" data-listing>
   <div class="sheet-backdrop" data-sheet-close></div>
-  <aside class="filters" id="filters" aria-label="Filters" data-filters>
+  <aside class="filters" id="filters" aria-label="{{t.tours.filters}}" data-filters>
     <div class="filters__head">
-      <h2>Filters</h2>
-      <button class="icon-btn" type="button" data-sheet-close aria-label="Close filters"><svg class="icon"><use href="#i-x"/></svg></button>
+      <h2>{{t.tours.filters}}</h2>
+      <button class="icon-btn" type="button" data-sheet-close aria-label="{{t.tours.closeFilters}}"><svg class="icon"><use href="#i-x"/></svg></button>
     </div>
     <div class="filters__body">
       <fieldset>
-        <legend class="meta">State</legend>
+        <legend class="meta">{{t.tours.state}}</legend>
         {{{stateFilters}}}
       </fieldset>
       <fieldset>
-        <legend class="meta">Theme</legend>
+        <legend class="meta">{{t.tours.theme}}</legend>
         {{{themeFilters}}}
       </fieldset>
       <fieldset>
-        <legend class="meta">Duration</legend>
+        <legend class="meta">{{t.tours.duration}}</legend>
         {{{durationFilters}}}
       </fieldset>
       <fieldset>
-        <legend class="meta">Budget per person</legend>
+        <legend class="meta">{{t.tours.budget}}</legend>
         {{{budgetFilters}}}
       </fieldset>
-      <button class="filters__reset" type="button" data-reset>Clear all filters</button>
+      <button class="filters__reset" type="button" data-reset>{{t.tours.clearAll}}</button>
     </div>
     <div class="filters__foot">
-      <button class="btn btn--outline" type="button" data-reset>Clear</button>
-      <button class="btn btn--primary" type="button" data-sheet-close>Show <span data-count-label>{{packageCount}}</span> trips</button>
+      <button class="btn btn--outline" type="button" data-reset>{{t.tours.clear}}</button>
+      <button class="btn btn--primary" type="button" data-sheet-close>{{{showHtml}}}</button>
     </div>
   </aside>
 
   <div class="results">
     <div class="toolbar">
-      <p class="toolbar__count" aria-live="polite"><strong data-count-label>{{packageCount}}</strong> trips found</p>
+      <p class="toolbar__count" aria-live="polite">{{{foundHtml}}}</p>
       <div class="toolbar__right">
         <button class="filter-btn" type="button" data-sheet-open aria-controls="filters" aria-expanded="false">
-          <svg class="icon"><use href="#i-grid"/></svg> Filters <span class="badge" data-filter-badge hidden>0</span>
+          <svg class="icon"><use href="#i-grid"/></svg> {{t.tours.filters}} <span class="badge" data-filter-badge hidden>0</span>
         </button>
-        <label class="sr-only" for="sort">Sort by</label>
+        <label class="sr-only" for="sort">{{t.tours.sortBy}}</label>
         <select class="select" id="sort" data-sort>
-          <option value="recommended">Recommended</option>
-          <option value="price-asc">Price: low to high</option>
-          <option value="price-desc">Price: high to low</option>
-          <option value="days-asc">Duration: shortest</option>
-          <option value="days-desc">Duration: longest</option>
+          <option value="recommended">{{t.tours.sortRecommended}}</option>
+          <option value="price-asc">{{t.tours.sortPriceAsc}}</option>
+          <option value="price-desc">{{t.tours.sortPriceDesc}}</option>
+          <option value="days-asc">{{t.tours.sortDaysAsc}}</option>
+          <option value="days-desc">{{t.tours.sortDaysDesc}}</option>
         </select>
       </div>
     </div>
@@ -69,11 +69,11 @@
     <ul class="cards-grid cards-grid--3" role="list" data-results>{{{cards}}}</ul>
     <div class="empty" data-empty hidden>
       {{svg rangoli}}
-      <h2>No trips match… <span class="accent">yet</span></h2>
-      <p>Try removing a filter, or tell us where you'd like to go and we'll build a custom itinerary for you.</p>
+      <h2>{{{t.tours.emptyTitle}}}</h2>
+      <p>{{t.tours.emptyText}}</p>
       <div class="empty__actions">
-        <button class="btn btn--outline" type="button" data-reset>Clear filters</button>
-        <a class="btn btn--primary" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> Ask for a custom trip</a>
+        <button class="btn btn--outline" type="button" data-reset>{{t.tours.clearFilters}}</button>
+        <a class="btn btn--primary" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.tours.askCustom}}</a>
       </div>
     </div>
   </div>

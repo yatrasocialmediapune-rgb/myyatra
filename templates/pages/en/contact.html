@@ -1,8 +1,8 @@
 <ul class="contact-grid" role="list">
   <li data-reveal style="--i:0"><a class="contact-card contact-card--wa" href="{{waGeneral}}" target="_blank" rel="noopener"><span class="why__icon"><svg class="icon"><use href="#i-whatsapp"/></svg></span><span class="meta">WhatsApp</span><strong>{{site.phone}}</strong><small>Fastest way to reach us</small></a></li>
-  <li data-reveal style="--i:1"><a class="contact-card" href="tel:{{phoneHref}}"><span class="why__icon"><svg class="icon"><use href="#i-phone"/></svg></span><span class="meta">Call</span><strong>{{site.phone}}</strong><small>{{site.hours}}</small></a></li>
+  <li data-reveal style="--i:1"><a class="contact-card" href="tel:{{phoneHref}}"><span class="why__icon"><svg class="icon"><use href="#i-phone"/></svg></span><span class="meta">Call</span><strong>{{site.phone}}</strong><small>{{siteL.hours}}</small></a></li>
   <li data-reveal style="--i:2"><a class="contact-card" href="mailto:{{site.email}}"><span class="why__icon"><svg class="icon"><use href="#i-mail"/></svg></span><span class="meta">Email</span><strong>{{site.email}}</strong><small>We reply within one working day</small></a></li>
-  <li data-reveal style="--i:3"><div class="contact-card"><span class="why__icon"><svg class="icon"><use href="#i-pin"/></svg></span><span class="meta">Office</span><strong>{{site.address.city}}, {{site.address.region}}</strong><small>Visits by appointment</small></div></li>
+  <li data-reveal style="--i:3"><div class="contact-card"><span class="why__icon"><svg class="icon"><use href="#i-pin"/></svg></span><span class="meta">Office</span><strong>{{siteL.address.city}}, {{siteL.address.region}}</strong><small>Visits by appointment</small></div></li>
 </ul>
 
 <div class="two-col" style="margin-top:clamp(3rem,2rem + 3vw,5rem)">
@@ -12,7 +12,7 @@
     <p>Fill in what you know and tap send. It opens WhatsApp with your details ready, so nothing is stored on this website.</p>
     <p>Not sure where to go yet? Just tell us the month, your budget and who is travelling, and we will suggest a few ideas.</p>
   </div>
-  <form class="enquiry" data-wa-form data-wa-number="{{site.whatsapp}}" data-wa-brand="{{site.name}}">
+  <form class="enquiry" data-wa-form data-wa-number="{{site.whatsapp}}">
     <div class="enquiry__grid">
       <label class="field"><span>Your name</span><input class="input" name="name" autocomplete="name" required></label>
       <label class="field"><span>Destination</span><input class="input" name="destination" list="destinations" placeholder="e.g. Kerala"></label>

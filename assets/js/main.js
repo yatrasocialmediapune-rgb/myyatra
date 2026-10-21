@@ -8,6 +8,15 @@
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
+  // Page-language strings written by build.js (data/i18n/{lang}.json → "js").
+  var I18N = {};
+  try { I18N = JSON.parse((document.getElementById('i18n') || {}).textContent || '{}'); } catch (e) { /* use fallbacks */ }
+  var tx = function (key, fallback, vars) {
+    var s = I18N[key] || fallback;
+    return s.replace(/\{(\w+)\}/g, function (m, k) { return vars && k in vars ? vars[k] : m; });
+  };
+  var locale = doc.lang || 'en-IN';
+
   /* ---------- Shared rAF-throttled scroll/resize loop ---------- */
   var scrollSubs = [];
   var ticking = false;
@@ -34,7 +43,7 @@
     var setMenu = function (open) {
       doc.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      toggle.setAttribute('aria-label', open ? tx('closeMenu', 'Close menu') : tx('openMenu', 'Open menu'));
       menu.toggleAttribute('inert', !open);
       if (open) { var first = $('a', menu); if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 250); }
     };
@@ -192,7 +201,7 @@
     var now = new Date();
     for (var m = 0; m < 12; m++) {
       var d = new Date(now.getFullYear(), now.getMonth() + m, 1);
-      var label = d.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+      var label = d.toLocaleString(locale, { month: 'long', year: 'numeric', numberingSystem: 'latn' });
       var opt = document.createElement('option');
       opt.value = label; opt.textContent = label;
       monthSel.appendChild(opt);
@@ -200,17 +209,18 @@
 
     var buildMsg = function () {
       var people = Math.max(minP, Math.min(maxP, parseInt(peopleInp.value, 10) || minP));
-      var month = monthSel.value || 'Flexible';
+      var month = monthSel.value || tx('flexible', 'Flexible');
+      var who = people === 1 ? tx('personOne', '{n} person', { n: people }) : tx('personOther', '{n} people', { n: people });
       return [
-        'Hi ' + planner.getAttribute('data-wa-brand') + '! I\'d like to plan this trip:',
+        tx('tripIntro', 'Hi! I\'d like to plan this trip:'),
         '',
         '*' + planner.getAttribute('data-wa-title') + '* (' + planner.getAttribute('data-wa-duration') + ')',
-        'Travel month: ' + month,
-        'Travellers: ' + people + (people === 1 ? ' person' : ' people'),
+        tx('month', 'Travel month: {m}', { m: month }),
+        tx('travellers', 'Travellers: {n}', { n: who }),
         '',
         planner.getAttribute('data-wa-url'),
         '',
-        'Please share availability and the best price.'
+        tx('closing', 'Please share availability and the best price.')
       ].join('\n');
     };
     var sync = function () {
@@ -233,16 +243,22 @@
     sync();
   }
 
+  /* ---------- Language menu: close on outside click or Escape ---------- */
+  $$('details.lang').forEach(function (menu) {
+    document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); } });
+  });
+
   /* ---------- Contact page: enquiry form → prefilled WhatsApp message (nothing is stored) ---------- */
   $$('[data-wa-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var v = function (n) { var el = form.elements[n]; return el ? el.value.trim() : ''; };
-      var lines = ['Hi ' + form.getAttribute('data-wa-brand') + '! I\'d like help planning a trip.', ''];
-      if (v('name')) lines.push('Name: ' + v('name'));
-      if (v('destination')) lines.push('Destination: ' + v('destination'));
-      if (v('month')) lines.push('Travel month: ' + v('month'));
-      if (v('people')) lines.push('Travellers: ' + v('people'));
+      var lines = [tx('greeting', 'Hi! I\'d like help planning a trip.'), ''];
+      if (v('name')) lines.push(tx('name', 'Name: {v}', { v: v('name') }));
+      if (v('destination')) lines.push(tx('destination', 'Destination: {v}', { v: v('destination') }));
+      if (v('month')) lines.push(tx('month', 'Travel month: {m}', { m: v('month') }));
+      if (v('people')) lines.push(tx('travellers', 'Travellers: {n}', { n: v('people') }));
       if (v('notes')) lines.push('', v('notes'));
       window.open('https://wa.me/' + form.getAttribute('data-wa-number') + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
     });

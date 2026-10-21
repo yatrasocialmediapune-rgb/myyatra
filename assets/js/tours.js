@@ -21,6 +21,8 @@
   var openBtn = $('[data-sheet-open]', root);
   var inputs = $$('input', panel);
 
+  var removeLabel = 'Remove filter {x}';
+  try { removeLabel = JSON.parse(document.getElementById('i18n').textContent).removeFilter || removeLabel; } catch (e) { /* keep English */ }
   var labelOf = function (input) { return input.closest('label').querySelector('.opt__label').textContent.trim(); };
   var norm = function (s) { return String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, ''); };
   var range = function (v) { var p = String(v).split('-'); return [Number(p[0]) || 0, Number(p[1]) || Infinity]; };
@@ -107,7 +109,7 @@
       b.type = 'button';
       b.innerHTML = '<span></span><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>';
       b.firstChild.textContent = c.label;
-      b.setAttribute('aria-label', 'Remove filter ' + c.label);
+      b.setAttribute('aria-label', removeLabel.replace('{x}', c.label));
       b.addEventListener('click', function () { c.clear(); apply(); });
       activeBox.appendChild(b);
     });

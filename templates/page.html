@@ -2,7 +2,7 @@
   {{svg rangoli}}
   <div class="container">
     <div class="page-hero__content">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">{{name}}</span></li></ol></nav>
+      <nav class="breadcrumbs" aria-label="{{t.a11y.breadcrumb}}"><ol><li><a href="{{home}}">{{t.nav.home}}</a></li><li><span aria-current="page">{{name}}</span></li></ol></nav>
       <p class="eyebrow">{{eyebrow}}</p>
       <h1>{{{titleHtml}}}</h1>
       <p class="lede">{{lede}}</p>
@@ -12,5 +12,6 @@
 </section>
 
 <div class="container page-body">
+{{{notice}}}
 {{{body}}}
 </div>

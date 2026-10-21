@@ -1,0 +1,39 @@
+<div class="two-col">
+  <div class="prose">
+    <p class="eyebrow">हमारी कहानी</p>
+    <h2 style="margin-top:.4em">खुली <span class="accent">सड़कों</span> के प्यार से शुरू हुई</h2>
+    <p>{{site.name}} की शुरुआत {{siteL.address.city}} में एक सीधे-सादे विचार से हुई: भारत में छुट्टी प्लान करना भी उतना ही मज़ेदार होना चाहिए जितना सफ़र ख़ुद। बहुत से यात्री दस-दस वेबसाइटों, अस्पष्ट कीमतों और ऐसे प्लान में उलझे रहते थे जो काग़ज़ पर अच्छे लगते थे पर सफ़र में बिखर जाते थे।</p>
+    <p>इसलिए हमने कुछ ज़्यादा निजी बनाया। इस वेबसाइट का हर पैकेज हमारी टीम तैयार करती है — जाने-पहचाने रास्ते, भरोसेमंद ड्राइवर और ऐसे होटल जहाँ हम ख़ुद ख़ुशी से रुकें। जब आप हमें मैसेज करते हैं, तो आप एक असली प्लानर से बात करते हैं जो आपके घर लौटने तक आपके साथ रहता है।</p>
+    <p class="callout"><strong>नमूना टेक्स्ट:</strong> इस हिस्से को अपनी कहानी से बदलें — आपने कब शुरुआत की, टीम में कौन है और आपके टूर अलग क्यों हैं।</p>
+  </div>
+  <figure style="margin:0" data-reveal>
+    <div class="polaroid" style="--rot:2deg;max-width:460px;margin-inline:auto">
+      <div class="polaroid__photo">{{{aboutImage}}}</div>
+      <p class="polaroid__trip">गुलमर्ग और पहलगाम के बीच कहीं</p>
+    </div>
+  </figure>
+</div>
+
+<div class="divider" aria-hidden="true" style="margin-block:clamp(3rem,2rem + 3vw,5rem)">{{svg rangoli}}</div>
+
+<div class="section-head">
+  <p class="eyebrow">हमारे मूल्य</p>
+  <h2 class="h2">हर टूर पर <span class="accent">तीन</span> वादे</h2>
+</div>
+<ul class="values" role="list">
+  <li data-reveal style="--i:0"><div class="why__item"><span class="why__no" aria-hidden="true">01</span><span class="why__icon"><svg class="icon"><use href="#i-shield"/></svg></span><h3>सबसे पहले साफ़गोई</h3><p>भुगतान से पहले ही आपको पता होगा कि क्या शामिल है, क्या नहीं और आप किस चीज़ के पैसे दे रहे हैं।</p></div></li>
+  <li data-reveal style="--i:1"><div class="why__item"><span class="why__no" aria-hidden="true">02</span><span class="why__icon"><svg class="icon"><use href="#i-route"/></svg></span><h3>आपकी रफ़्तार से सफ़र</h3><p>सुबह-सुबह मंदिर दर्शन हो या नज़ारे के साथ आराम से नाश्ता — जैसे आपको सफ़र पसंद है, हम वैसे ही प्लान करते हैं।</p></div></li>
+  <li data-reveal style="--i:2"><div class="why__item"><span class="why__no" aria-hidden="true">03</span><span class="why__icon"><svg class="icon"><use href="#i-whatsapp"/></svg></span><h3>हमेशा संपर्क में</h3><p>पूरे सफ़र के लिए एक ही WhatsApp चैट। रास्ते में प्लान बदले तो हम भी तुरंत बदलते हैं।</p></div></li>
+</ul>
+
+<div class="cta-band" data-reveal style="margin-top:clamp(3rem,2rem + 3vw,5rem)">
+  {{svg rangoli}}
+  <div>
+    <p class="eyebrow">नमस्ते कहिए</p>
+    <h2>आइए, आपका अगला <span class="accent">सफ़र</span> प्लान करें।</h2>
+  </div>
+  <div class="cta-band__actions">
+    <a class="btn btn--primary btn--lg" href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.cta.chatOnWhatsApp}}</a>
+    <a class="btn btn--light btn--lg" href="{{lp}}/tours/">{{t.cta.browseTours}}</a>
+  </div>
+</div>

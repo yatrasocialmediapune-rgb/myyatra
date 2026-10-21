@@ -18,7 +18,9 @@
   var THEMES = ['Pilgrimage', 'Honeymoon', 'Family', 'Hill Station', 'Beach', 'Wildlife', 'Weekend'];
   var STATES = ['Andaman & Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra & Nagar Haveli and Daman & Diu', 'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu & Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'];
   var MEALS = ['Room only (EP)', 'Breakfast only (CP)', 'Breakfast & Dinner (MAP)', 'All meals (AP)'];
-  var FIELD_ORDER = ['id', 'slug', 'title', 'state', 'cities', 'themes', 'nights', 'days', 'startCity', 'minPeople', 'mealPlan', 'price', 'salePrice', 'featured', 'published', 'coverImage', 'gallery', 'shortDescription', 'itinerary', 'inclusions', 'exclusions', 'seoTitle', 'seoDescription', 'updatedAt'];
+  var FIELD_ORDER = ['id', 'slug', 'title', 'state', 'cities', 'themes', 'nights', 'days', 'startCity', 'minPeople', 'mealPlan', 'price', 'salePrice', 'featured', 'published', 'coverImage', 'gallery', 'shortDescription', 'itinerary', 'inclusions', 'exclusions', 'seoTitle', 'seoDescription', 'updatedAt', 'translations'];
+  // Extra website languages. English is the main text; these are optional translations.
+  var TR_LANGS = [['mr', 'मराठी', 'Marathi'], ['hi', 'हिंदी', 'Hindi']];
   var IMG_MAX = 1600, IMG_VARIANTS = [800, 480], IMG_QUALITY = 0.82;
 
   /* ---------- Helpers ---------- */
@@ -537,6 +539,11 @@
       field('SEO description', '<textarea class="input" id="f-seod" data-f="seoDescription" rows="3" maxlength="300">' + esc(d.seoDescription) + '</textarea>', 'Aim for 140–160 characters.', { key: 'seoDescription', id: 'f-seod', counter: 'seoDescription' }) +
       '<div class="serp" id="serp" aria-label="Google preview"></div></section>' +
 
+      // Translations
+      '<section class="panel" id="tr-panel"><div class="panel__head"><div><h2>Translations</h2><p>Marathi and Hindi text for this package. Anything left empty shows the English text on that language’s page.</p></div></div>' +
+      '<div class="tabs" role="tablist" aria-label="Translation language">' + TR_LANGS.map(function (l, i) { return '<button type="button" role="tab" class="tab" data-action="tr-tab" data-lang="' + l[0] + '" aria-selected="' + (i === 0) + '">' + l[1] + ' <span class="tab__count" data-tr-count="' + l[0] + '"></span></button>'; }).join('') + '</div>' +
+      '<div id="tr-body"></div></section>' +
+
       '<div class="savebar"><span class="savebar__dirty">Unsaved</span>' + (isNew ? '' : '<button class="btn btn--ghost" type="button" data-action="delete" data-id="' + esc(d.id) + '" aria-label="Delete package">' + icon('a-trash') + '</button>') +
       '<button class="btn btn--primary" type="button" data-action="save">' + icon('a-check') + ' Save</button></div>' +
       '</div>' +
@@ -553,6 +560,7 @@
       '</form>';
 
     renderTags(); renderThemes(); renderThumbs(); renderDays(); renderList('inclusions'); renderList('exclusions');
+    S.trLang = S.trLang || 'mr'; renderTr();
     refreshDerived();
     bindEditor();
     if (duplicate) markDirty();
@@ -673,6 +681,9 @@
         clearErr(t);
       } else if (t.dataset.it) {
         d.itinerary[+t.dataset.idx][t.dataset.it] = t.value;
+      } else if (t.dataset.tr) {
+        setTr(t.dataset.tr, t.dataset.kind, t.value, t.dataset.idx);
+        updateTrCounts();
       } else if (t.dataset.li) {
         d[t.dataset.li][+t.dataset.idx] = t.value;
       } else if (t.dataset.theme) {
@@ -813,15 +824,95 @@
     p.cities = p.cities.map(t).filter(Boolean);
     p.inclusions = p.inclusions.map(t).filter(Boolean);
     p.exclusions = p.exclusions.map(t).filter(Boolean);
-    p.itinerary = p.itinerary.map(function (x, i) { return { day: i + 1, title: t(x.title), description: t(x.description) }; }).filter(function (x) { return x.title || x.description; })
-      .map(function (x, i) { x.day = i + 1; return x; });
+    var keptDays = [];
+    p.itinerary = p.itinerary.map(function (x, i) { return { day: i + 1, title: t(x.title), description: t(x.description), _i: i }; }).filter(function (x) { return x.title || x.description; })
+      .map(function (x, i) { keptDays.push(x._i); delete x._i; x.day = i + 1; return x; });
+    // Translations: drop empty fields; keep translated days aligned with the English days that remain.
+    var trOut = {};
+    Object.keys(p.translations || {}).forEach(function (lang) {
+      var src = p.translations[lang] || {}, o = {};
+      ['title', 'startCity', 'mealPlan', 'shortDescription', 'seoTitle', 'seoDescription'].forEach(function (k) { if (t(src[k])) o[k] = t(src[k]); });
+      ['cities', 'inclusions', 'exclusions'].forEach(function (k) { var a = (src[k] || []).map(t).filter(Boolean); if (a.length) o[k] = a; });
+      var days = keptDays.map(function (i) { var x = (src.itinerary || [])[i] || {}; return { title: t(x.title), description: t(x.description) }; });
+      if (days.some(function (x) { return x.title || x.description; })) o.itinerary = days;
+      if (Object.keys(o).length) trOut[lang] = o;
+    });
+    p.translations = Object.keys(trOut).length ? trOut : undefined;
     p.gallery = p.gallery.filter(Boolean);
     if (p.gallery.length && p.gallery.indexOf(p.coverImage) === -1) p.coverImage = p.gallery[0];
     if (!p.gallery.length) p.coverImage = '';
     ['nights', 'days', 'minPeople', 'price', 'salePrice'].forEach(function (k) { p[k] = Math.max(0, parseInt(p[k], 10) || 0); });
     p.featured = !!p.featured; p.published = !!p.published;
-    FIELD_ORDER.forEach(function (k) { out[k] = p[k]; });
+    FIELD_ORDER.forEach(function (k) { if (p[k] !== undefined) out[k] = p[k]; });
     return out;
+  }
+
+  /* ----- Package translations (Marathi / Hindi) ----- */
+  function trObj(lang) {
+    var d = S.draft;
+    if (!d.translations || typeof d.translations !== 'object') d.translations = {};
+    if (!d.translations[lang]) d.translations[lang] = {};
+    return d.translations[lang];
+  }
+  function eachTrDays(fn) {
+    var tr = S.draft.translations || {};
+    Object.keys(tr).forEach(function (lang) { if (Array.isArray(tr[lang].itinerary)) fn(tr[lang].itinerary); });
+  }
+  function setTr(path, kind, value, idx) {
+    var parts = path.split('.'), o = trObj(parts[0]), key = parts[1];
+    if (kind === 'lines') o[key] = value.split('\n');
+    else if (kind === 'csv') o[key] = value.split(',').map(function (s) { return s.trim(); });
+    else if (kind === 'day') {
+      if (!Array.isArray(o.itinerary)) o.itinerary = [];
+      while (o.itinerary.length <= +idx) o.itinerary.push({ title: '', description: '' });
+      o.itinerary[+idx][key] = value;
+    } else o[key] = value;
+  }
+  function trFilled(lang) {
+    var d = S.draft, o = (d.translations || {})[lang] || {}, total = 0, done = 0;
+    var has = function (v) { return Array.isArray(v) ? v.some(function (x) { return String(x || '').trim(); }) : String(v || '').trim(); };
+    ['title', 'shortDescription', 'startCity', 'mealPlan', 'cities', 'inclusions', 'exclusions'].forEach(function (k) { if (has(d[k])) { total++; if (has(o[k])) done++; } });
+    d.itinerary.forEach(function (day, i) { total++; var x = (o.itinerary || [])[i] || {}; if (String(x.title || '').trim() && String(x.description || '').trim()) done++; });
+    return [done, total];
+  }
+  function updateTrCounts() {
+    TR_LANGS.forEach(function (l) {
+      var el = $('[data-tr-count="' + l[0] + '"]'); if (!el) return;
+      var c = trFilled(l[0]);
+      el.textContent = c[0] + '/' + c[1];
+      el.classList.toggle('is-done', c[1] > 0 && c[0] === c[1]);
+    });
+  }
+  function renderTr() {
+    var box = $('#tr-body'); if (!box) return;
+    var lang = S.trLang || 'mr', d = S.draft, o = (d.translations || {})[lang] || {};
+    var name = TR_LANGS.filter(function (l) { return l[0] === lang; })[0];
+    var ref = function (txt) { return txt ? '<small class="tr-ref"><b>English:</b> ' + esc(String(txt).slice(0, 220)) + (String(txt).length > 220 ? '…' : '') + '</small>' : ''; };
+    var inp = function (key, label, eng, area, rows) {
+      return '<div class="f"><label for="tr-' + key + '">' + label + '</label>' +
+        (area ? '<textarea class="input" id="tr-' + key + '" rows="' + (rows || 3) + '" data-tr="' + lang + '.' + key + '" lang="' + lang + '">' + esc(o[key] || '') + '</textarea>'
+          : '<input class="input" id="tr-' + key + '" data-tr="' + lang + '.' + key + '" lang="' + lang + '" value="' + esc(o[key] || '') + '">') + ref(eng) + '</div>';
+    };
+    var lines = function (key, label, eng) {
+      return '<div class="f"><label for="tr-' + key + '">' + label + ' <span class="hint">(one per line)</span></label><textarea class="input" id="tr-' + key + '" rows="' + Math.max(3, eng.length) + '" data-tr="' + lang + '.' + key + '" data-kind="lines" lang="' + lang + '">' + esc((o[key] || []).join('\n')) + '</textarea>' + ref(eng.join(' · ')) + '</div>';
+    };
+    box.innerHTML =
+      '<p class="hint">Writing the ' + name[2] + ' (' + name[1] + ') version. Days follow the English order — reorder days in the itinerary above and the translations move with them.</p>' +
+      inp('title', 'Title', d.title) +
+      '<div class="grid2">' + inp('startCity', 'Starting city', d.startCity) + inp('mealPlan', 'Meal plan', d.mealPlan) + '</div>' +
+      '<div class="f"><label for="tr-cities">Cities covered <span class="hint">(comma separated)</span></label><input class="input" id="tr-cities" data-tr="' + lang + '.cities" data-kind="csv" lang="' + lang + '" value="' + esc((o.cities || []).join(', ')) + '">' + ref(d.cities.join(', ')) + '</div>' +
+      inp('shortDescription', 'Short description', d.shortDescription, true, 4) +
+      '<div class="f"><span class="f__label">Day-by-day itinerary</span><ol class="days">' +
+      (d.itinerary.length ? d.itinerary.map(function (day, i) {
+        var x = (o.itinerary || [])[i] || {};
+        return '<li class="day"><span class="day__num" aria-hidden="true">' + (i + 1) + '</span>' +
+          '<input class="input" data-tr="' + lang + '.title" data-kind="day" data-idx="' + i + '" lang="' + lang + '" value="' + esc(x.title || '') + '" aria-label="Day ' + (i + 1) + ' title (' + name[2] + ')">' + ref(day.title) +
+          '<textarea class="input" rows="3" data-tr="' + lang + '.description" data-kind="day" data-idx="' + i + '" lang="' + lang + '" aria-label="Day ' + (i + 1) + ' description (' + name[2] + ')">' + esc(x.description || '') + '</textarea>' + ref(day.description) + '</li>';
+      }).join('') : '<li class="empty-note">Add days to the English itinerary first.</li>') + '</ol></div>' +
+      '<div class="lists">' + lines('inclusions', 'Included', d.inclusions) + lines('exclusions', 'Not included', d.exclusions) + '</div>' +
+      inp('seoTitle', 'SEO title', '') + inp('seoDescription', 'SEO description', '', true, 2) +
+      '<p class="hint">SEO fields can stay empty — they are generated from the translated title and description.</p>';
+    updateTrCounts();
   }
   function validate(p) {
     var e = [];
@@ -911,13 +1002,24 @@
       inp('stats.travellers', 'Happy travellers', { num: true, type: 'number' }) + inp('stats.yearsPlanning', 'Years planning trips', { num: true, type: 'number' }) + '</div></section>' +
       '<section class="panel"><div class="panel__head"><div><h2>Testimonials</h2><p>Only publish genuine reviews, with permission.</p></div><button class="btn btn--ghost btn--sm" type="button" data-action="t-add">' + icon('a-plus') + ' Add</button></div><ul class="repeat" id="rep-t"></ul></section>' +
       '<section class="panel"><div class="panel__head"><h2>FAQs</h2><button class="btn btn--ghost btn--sm" type="button" data-action="q-add">' + icon('a-plus') + ' Add</button></div><ul class="repeat" id="rep-q"></ul></section>' +
+      '<section class="panel"><div class="panel__head"><div><h2>Translations</h2><p>Marathi and Hindi versions of the text above. Empty fields show the English text.</p></div></div>' +
+      '<div class="tabs" role="tablist" aria-label="Translation language">' + TR_LANGS.map(function (l, i) { return '<button type="button" role="tab" class="tab" data-action="st-tab" data-lang="' + l[0] + '" aria-selected="' + (i === 0) + '">' + l[1] + '</button>'; }).join('') + '</div>' +
+      '<div id="st-body"></div></section>' +
       '<div class="savebar" style="display:flex"><span class="savebar__dirty">Unsaved</span><button class="btn btn--primary" type="button" data-action="save-site">' + icon('a-check') + ' Save settings</button></div>' +
       '</div></form>';
-    renderRepeats();
+    s.translations = s.translations && typeof s.translations === 'object' ? s.translations : {};
+    S.stLang = 'mr';
+    renderRepeats(); renderSiteTr();
     var form = $('#site-form');
     form.addEventListener('input', function (e) {
       var t = e.target;
       if (t.dataset.s) setPath(s, t.dataset.s, t.dataset.type === 'int' ? (parseInt(t.value, 10) || 0) : t.value);
+      else if (t.dataset.st) setPath(siteTr(), t.dataset.st, t.value);
+      else if (t.dataset.stl) {
+        var o = siteTr(), list = o[t.dataset.stl] = o[t.dataset.stl] || [];
+        while (list.length <= +t.dataset.idx) list.push({});
+        list[+t.dataset.idx][t.dataset.k] = t.value;
+      }
       else if (t.dataset.rep) {
         var arr = t.dataset.rep === 't' ? s.testimonials : s.faqs;
         arr[+t.dataset.idx][t.dataset.k] = t.type === 'checkbox' ? t.checked : t.value;
@@ -925,6 +1027,54 @@
       clearErr(t); S.dirty = true; form.classList.add('is-dirty');
     });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
+  }
+  function siteTr() {
+    var tr = S.siteDraft.translations, lang = S.stLang || 'mr';
+    if (!tr[lang]) tr[lang] = {};
+    if (!Array.isArray(tr[lang].faqs)) tr[lang].faqs = [];
+    if (!Array.isArray(tr[lang].testimonials)) tr[lang].testimonials = [];
+    return tr[lang];
+  }
+  function renderSiteTr() {
+    var box = $('#st-body'); if (!box) return;
+    var s = S.siteDraft, lang = S.stLang || 'mr', o = siteTr();
+    var ref = function (txt) { return txt ? '<small class="tr-ref"><b>English:</b> ' + esc(String(txt).slice(0, 220)) + '</small>' : ''; };
+    var inp = function (path, label, eng, area) {
+      var v = getPath(o, path);
+      return '<div class="f"><label>' + label + '</label>' + (area ? '<textarea class="input" rows="3" data-st="' + path + '" lang="' + lang + '">' + esc(v || '') + '</textarea>' : '<input class="input" data-st="' + path + '" lang="' + lang + '" value="' + esc(v || '') + '">') + ref(eng) + '</div>';
+    };
+    var item = function (list, i, k, label, eng, area) {
+      var v = ((o[list] || [])[i] || {})[k] || '';
+      return '<div class="f"><label>' + label + '</label>' + (area ? '<textarea class="input" rows="3" data-stl="' + list + '" data-idx="' + i + '" data-k="' + k + '" lang="' + lang + '">' + esc(v) + '</textarea>' : '<input class="input" data-stl="' + list + '" data-idx="' + i + '" data-k="' + k + '" lang="' + lang + '" value="' + esc(v) + '">') + ref(eng) + '</div>';
+    };
+    box.innerHTML =
+      inp('description', 'Site description', s.description, true) +
+      '<div class="grid2">' + inp('hours', 'Working hours', s.hours) + inp('whatsappGreeting', 'Default WhatsApp message', s.whatsappGreeting) + '</div>' +
+      '<div class="grid2">' + inp('address.city', 'City', s.address.city) + inp('address.region', 'State', s.address.region) + '</div>' +
+      '<div class="f"><span class="f__label">Testimonials (same order as above)</span><ul class="repeat">' + (s.testimonials.length ? s.testimonials.map(function (t, i) {
+        return '<li><div class="repeat__head">' + esc(t.name || 'Testimonial ' + (i + 1)) + '</div><div class="grid2">' + item('testimonials', i, 'name', 'Name', t.name) + item('testimonials', i, 'city', 'City', t.city) + '</div>' + item('testimonials', i, 'trip', 'Trip', t.trip) + item('testimonials', i, 'quote', 'Quote', t.quote, true) + '</li>';
+      }).join('') : '<li class="empty-note">No testimonials.</li>') + '</ul></div>' +
+      '<div class="f"><span class="f__label">FAQs <span class="hint">(if empty, the English FAQs are shown)</span></span><ul class="repeat">' + o.faqs.map(function (q, i) {
+        var en = s.faqs[i] || {};
+        return '<li><div class="repeat__head">Question ' + (i + 1) + '<button class="ibtn" type="button" data-action="stq-remove" data-idx="' + i + '" aria-label="Remove question">' + icon('a-trash') + '</button></div>' + item('faqs', i, 'q', 'Question', en.q) + item('faqs', i, 'a', 'Answer', en.a, true) + '</li>';
+      }).join('') + '</ul><div class="checks">' +
+      (o.faqs.length ? '' : '<button class="btn btn--outline btn--sm" type="button" data-action="stq-copy">Start from the English list</button>') +
+      '<button class="btn btn--ghost btn--sm" type="button" data-action="stq-add">' + icon('a-plus') + ' Add question</button></div></div>';
+  }
+  function cleanSiteTr(tr) {
+    var out = {};
+    Object.keys(tr || {}).forEach(function (lang) {
+      var src = tr[lang] || {}, o = {}, t = function (v) { return String(v == null ? '' : v).trim(); };
+      ['tagline', 'description', 'hours', 'whatsappGreeting'].forEach(function (k) { if (t(src[k])) o[k] = t(src[k]); });
+      var addr = {}; ['city', 'region'].forEach(function (k) { if (src.address && t(src.address[k])) addr[k] = t(src.address[k]); });
+      if (Object.keys(addr).length) o.address = addr;
+      var tm = (src.testimonials || []).map(function (x) { var y = {}; ['name', 'city', 'trip', 'quote'].forEach(function (k) { if (x && t(x[k])) y[k] = t(x[k]); }); return y; });
+      if (tm.some(function (x) { return Object.keys(x).length; })) o.testimonials = tm;
+      var fq = (src.faqs || []).map(function (x) { return { q: t(x && x.q), a: t(x && x.a) }; }).filter(function (x) { return x.q && x.a; });
+      if (fq.length) o.faqs = fq;
+      if (Object.keys(o).length) out[lang] = o;
+    });
+    return Object.keys(out).length ? out : undefined;
   }
   function renderRepeats() {
     var s = S.siteDraft;
@@ -953,6 +1103,8 @@
     ['instagram', 'facebook', 'youtube'].forEach(function (k) { if (s.socials[k] && !/^https?:\/\//.test(s.socials[k])) e.push(['s:socials.' + k, 'Use a full link starting with https://']); });
     s.faqs = s.faqs.filter(function (q) { return String(q.q || '').trim() && String(q.a || '').trim(); });
     s.testimonials = s.testimonials.filter(function (t) { return String(t.quote || '').trim() && String(t.name || '').trim(); });
+    s.translations = cleanSiteTr(s.translations);
+    if (!s.translations) delete s.translations;
     if (e.length) { showErrors(e); toast('Please fix ' + e.length + (e.length === 1 ? ' field' : ' fields'), 'err', e.map(function (x) { return esc(x[1]); }).join('<br>')); return; }
     $$('[data-action="save-site"]').forEach(function (b) { b.disabled = true; });
     try {
@@ -1014,23 +1166,34 @@
       }
       case 'img-left': move(d.gallery, i, i - 1); renderThumbs(); break;
       case 'img-right': move(d.gallery, i, i + 1); renderThumbs(); break;
-      case 'it-add': d.itinerary.push({ day: d.itinerary.length + 1, title: '', description: '' }); renderDays(); clearErr($('#days'));
+      case 'it-add': d.itinerary.push({ day: d.itinerary.length + 1, title: '', description: '' }); renderDays(); renderTr(); clearErr($('#days'));
         setTimeout(function () { var x = $$('[data-it="title"]').pop(); if (x) x.focus(); }, 30); break;
       case 'it-fill': {
         var n = d.days || 0;
         if (d.itinerary.length > n && !confirm('Remove the last ' + (d.itinerary.length - n) + ' day(s) to match ' + n + ' days?')) return;
         while (d.itinerary.length < n) d.itinerary.push({ day: d.itinerary.length + 1, title: '', description: '' });
-        d.itinerary.length = n; renderDays(); break;
+        d.itinerary.length = n; renderDays(); renderTr(); break;
       }
       case 'it-remove':
         if ((d.itinerary[i].title || d.itinerary[i].description) && !confirm('Remove day ' + (i + 1) + '?')) return;
-        d.itinerary.splice(i, 1); renderDays(); break;
-      case 'it-up': move(d.itinerary, i, i - 1); renderDays(); break;
-      case 'it-down': move(d.itinerary, i, i + 1); renderDays(); break;
+        d.itinerary.splice(i, 1); eachTrDays(function (days) { days.splice(i, 1); }); renderDays(); renderTr(); break;
+      case 'it-up': move(d.itinerary, i, i - 1); eachTrDays(function (days) { move(days, i, i - 1); }); renderDays(); renderTr(); break;
+      case 'it-down': move(d.itinerary, i, i + 1); eachTrDays(function (days) { move(days, i, i + 1); }); renderDays(); renderTr(); break;
+      case 'tr-tab':
+        S.trLang = b.dataset.lang;
+        $$('[data-action="tr-tab"]').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+        renderTr(); return;
+      case 'st-tab':
+        S.stLang = b.dataset.lang;
+        $$('[data-action="st-tab"]').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+        renderSiteTr(); return;
+      case 'stq-add': siteTr().faqs.push({ q: '', a: '' }); renderSiteTr(); siteDirty(); return;
+      case 'stq-remove': siteTr().faqs.splice(i, 1); renderSiteTr(); siteDirty(); return;
+      case 'stq-copy': siteTr().faqs = S.siteDraft.faqs.map(function () { return { q: '', a: '' }; }); renderSiteTr(); siteDirty(); return;
       case 'li-add': addListItem(b.dataset.list); return;
       case 'li-remove': d[b.dataset.list].splice(i, 1); renderList(b.dataset.list); break;
       case 't-add': S.siteDraft.testimonials.push({ name: '', city: '', trip: '', image: '', quote: '' }); renderRepeats(); siteDirty(); return;
-      case 't-remove': S.siteDraft.testimonials.splice(i, 1); renderRepeats(); siteDirty(); return;
+      case 't-remove': S.siteDraft.testimonials.splice(i, 1); Object.keys(S.siteDraft.translations || {}).forEach(function (l) { var x = S.siteDraft.translations[l]; if (x && Array.isArray(x.testimonials)) x.testimonials.splice(i, 1); }); renderRepeats(); renderSiteTr(); siteDirty(); return;
       case 'q-add': S.siteDraft.faqs.push({ q: '', a: '' }); renderRepeats(); siteDirty(); return;
       case 'q-remove': S.siteDraft.faqs.splice(i, 1); renderRepeats(); siteDirty(); return;
       case 'q-up': move(S.siteDraft.faqs, i, i - 1); renderRepeats(); siteDirty(); return;

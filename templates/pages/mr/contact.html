@@ -1,0 +1,26 @@
+<ul class="contact-grid" role="list">
+  <li data-reveal style="--i:0"><a class="contact-card contact-card--wa" href="{{waGeneral}}" target="_blank" rel="noopener"><span class="why__icon"><svg class="icon"><use href="#i-whatsapp"/></svg></span><span class="meta">WhatsApp</span><strong>{{site.phone}}</strong><small>आमच्याशी बोलण्याचा सर्वात जलद मार्ग</small></a></li>
+  <li data-reveal style="--i:1"><a class="contact-card" href="tel:{{phoneHref}}"><span class="why__icon"><svg class="icon"><use href="#i-phone"/></svg></span><span class="meta">कॉल</span><strong>{{site.phone}}</strong><small>{{siteL.hours}}</small></a></li>
+  <li data-reveal style="--i:2"><a class="contact-card" href="mailto:{{site.email}}"><span class="why__icon"><svg class="icon"><use href="#i-mail"/></svg></span><span class="meta">ईमेल</span><strong>{{site.email}}</strong><small>एका कामकाजाच्या दिवसात उत्तर देतो</small></a></li>
+  <li data-reveal style="--i:3"><div class="contact-card"><span class="why__icon"><svg class="icon"><use href="#i-pin"/></svg></span><span class="meta">कार्यालय</span><strong>{{siteL.address.city}}, {{siteL.address.region}}</strong><small>भेट पूर्वनियोजित वेळेनुसार</small></div></li>
+</ul>
+
+<div class="two-col" style="margin-top:clamp(3rem,2rem + 3vw,5rem)">
+  <div class="prose">
+    <p class="eyebrow">झटपट चौकशी</p>
+    <h2 style="margin-top:.4em">तुमच्या <span class="accent">सहलीबद्दल</span> सांगा</h2>
+    <p>माहिती भरा आणि पाठवा. तुमच्या तपशिलांसह WhatsApp उघडेल — या वेबसाइटवर काहीही साठवले जात नाही.</p>
+    <p>कुठे जायचे अजून ठरले नाही? फक्त महिना, बजेट आणि कोण प्रवास करणार ते सांगा, आम्ही काही पर्याय सुचवू.</p>
+  </div>
+  <form class="enquiry" data-wa-form data-wa-number="{{site.whatsapp}}">
+    <div class="enquiry__grid">
+      <label class="field"><span>तुमचे नाव</span><input class="input" name="name" autocomplete="name" required></label>
+      <label class="field"><span>ठिकाण</span><input class="input" name="destination" list="destinations" placeholder="उदा. केरळ"></label>
+      <label class="field"><span>प्रवासाचा महिना</span><input class="input" name="month" placeholder="उदा. डिसेंबर"></label>
+      <label class="field"><span>प्रवासी</span><input class="input" name="people" type="number" inputmode="numeric" min="1" max="99" value="2"></label>
+      <label class="field field--full"><span>आणखी काही?</span><textarea class="input" name="notes" placeholder="बजेट, हॉटेलची आवड, खास प्रसंग…"></textarea></label>
+    </div>
+    <datalist id="destinations">{{{destinationOptions}}}</datalist>
+    <button class="btn btn--primary btn--lg btn--block" type="submit"><svg class="icon"><use href="#i-whatsapp"/></svg> WhatsApp वर पाठवा</button>
+  </form>
+</div>
