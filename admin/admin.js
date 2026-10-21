@@ -898,7 +898,7 @@
       inp('url', 'Website address', { type: 'url', req: true, hint: 'e.g. https://myyatra.co.in — used for canonical links and the sitemap.' }) +
       '</section>' +
       '<section class="panel"><div class="panel__head"><h2>Contact details</h2></div>' +
-      '<div class="grid2">' + inp('phone', 'Phone (display)', { type: 'tel', req: true, ph: '+91 93596 73459' }) + inp('whatsapp', 'WhatsApp number', { type: 'tel', req: true, hint: 'Digits only with country code, e.g. 919359673459' }) + '</div>' +
+      '<div class="grid2">' + inp('phone', 'Phone (display)', { type: 'tel', req: true, ph: '+91 70571 18058' }) + inp('whatsapp', 'WhatsApp number', { type: 'tel', req: true, hint: 'Digits only with country code, e.g. 917057118058' }) + '</div>' +
       '<div class="grid2">' + inp('email', 'Email', { type: 'email', req: true }) + inp('hours', 'Working hours') + '</div>' +
       inp('whatsappGreeting', 'Default WhatsApp message') +
       '<div class="grid2">' + inp('address.street', 'Street address') + inp('address.city', 'City') + '</div>' +
@@ -948,7 +948,7 @@
     if (!s.name) e.push(['s:name', 'Add the brand name.']);
     if (!/^https?:\/\/[^\s.]+\.[^\s]+$/.test(s.url)) e.push(['s:url', 'Enter a full address starting with https://']);
     if (!s.phone) e.push(['s:phone', 'Add a phone number.']);
-    if (!/^\d{10,15}$/.test(s.whatsapp)) e.push(['s:whatsapp', 'Use 10–15 digits including the country code, e.g. 919359673459.']);
+    if (!/^\d{10,15}$/.test(s.whatsapp)) e.push(['s:whatsapp', 'Use 10–15 digits including the country code, e.g. 917057118058.']);
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email || '')) e.push(['s:email', 'Enter a valid email address.']);
     ['instagram', 'facebook', 'youtube'].forEach(function (k) { if (s.socials[k] && !/^https?:\/\//.test(s.socials[k])) e.push(['s:socials.' + k, 'Use a full link starting with https://']); });
     s.faqs = s.faqs.filter(function (q) { return String(q.q || '').trim() && String(q.a || '').trim(); });

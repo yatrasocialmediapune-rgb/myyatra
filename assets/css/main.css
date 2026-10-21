@@ -363,7 +363,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .trip-hero::before { /* navy gradient overlay */
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(11, 45, 80, .78) 0%, rgba(11, 45, 80, .2) 32%, rgba(11, 45, 80, .25) 55%, rgba(6, 26, 47, .92) 100%),
+    linear-gradient(180deg, rgba(11, 45, 80, .8) 0%, rgba(11, 45, 80, .38) 32%, rgba(11, 45, 80, .45) 55%, rgba(6, 26, 47, .92) 100%),
     linear-gradient(90deg, rgba(11, 45, 80, .55), rgba(11, 45, 80, 0) 70%);
 }
 .trip-hero__content { display: grid; gap: 18px; position: relative; }
@@ -1015,3 +1015,7 @@ textarea.input { padding: 12px 14px; min-height: 110px; resize: vertical; }
 .has-hero .site-header:not(.is-scrolled) .logo__img--dark, .menu-open .site-header .logo__img--dark { display: none; }
 .has-hero .site-header:not(.is-scrolled) .logo__img--light, .menu-open .site-header .logo__img--light { display: block; }
 .site-footer .logo__img { height: 60px; }
+
+/* Four cards in a rail: 2×2 on laptops, one row of four on large screens (no orphan card) */
+@media (min-width: 67.5em) { .rail:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 90em) { .rail:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; } }

@@ -4,8 +4,16 @@
     "slug": "kashmir-lakes-meadows-4n-5d",
     "title": "Kashmir: Lakes, Meadows & Snow Peaks",
     "state": "Jammu & Kashmir",
-    "cities": ["Srinagar", "Gulmarg", "Pahalgam"],
-    "themes": ["Honeymoon", "Family", "Hill Station"],
+    "cities": [
+      "Srinagar",
+      "Gulmarg",
+      "Pahalgam"
+    ],
+    "themes": [
+      "Honeymoon",
+      "Family",
+      "Hill Station"
+    ],
     "nights": 4,
     "days": 5,
     "startCity": "Srinagar",
@@ -77,8 +85,16 @@
     "slug": "dwarka-somnath-yatra-3n-4d",
     "title": "Dwarka–Somnath Darshan Yatra",
     "state": "Gujarat",
-    "cities": ["Dwarka", "Bet Dwarka", "Porbandar", "Somnath"],
-    "themes": ["Pilgrimage", "Family"],
+    "cities": [
+      "Dwarka",
+      "Bet Dwarka",
+      "Porbandar",
+      "Somnath"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Family"
+    ],
     "nights": 3,
     "days": 4,
     "startCity": "Rajkot",
@@ -142,8 +158,17 @@
     "slug": "kerala-hills-and-backwaters-5n-6d",
     "title": "Kerala: Tea Hills to Backwaters",
     "state": "Kerala",
-    "cities": ["Munnar", "Thekkady", "Alleppey", "Kochi"],
-    "themes": ["Honeymoon", "Family", "Hill Station"],
+    "cities": [
+      "Munnar",
+      "Thekkady",
+      "Alleppey",
+      "Kochi"
+    ],
+    "themes": [
+      "Honeymoon",
+      "Family",
+      "Hill Station"
+    ],
     "nights": 5,
     "days": 6,
     "startCity": "Kochi",
@@ -213,5 +238,83 @@
     "seoTitle": "Kerala Tour Package 5N/6D – Munnar, Thekkady, Alleppey Houseboat | My Yatra",
     "seoDescription": "5 nights / 6 days Kerala tour: Munnar tea hills, Thekkady spice gardens, private Alleppey houseboat and Fort Kochi. Private AC cab and breakfast included.",
     "updatedAt": "2026-10-15"
+  },
+  {
+    "id": "pkg-girnar-01",
+    "slug": "pune-girnar-darshan-yatra-4n-5d",
+    "title": "Pune to Shri *Girnar* Darshan Yatra",
+    "state": "Gujarat",
+    "cities": [
+      "Junagadh",
+      "Bhavnath",
+      "Girnar"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Family"
+    ],
+    "nights": 4,
+    "days": 5,
+    "startCity": "Pune",
+    "minPeople": 2,
+    "mealPlan": "Pure veg meals included",
+    "price": 15000,
+    "salePrice": 10000,
+    "featured": true,
+    "published": true,
+    "coverImage": "images/girnar-sunrise.svg",
+    "gallery": [
+      "images/girnar-sunrise.svg",
+      "images/girnar-steps.webp",
+      "images/girnar-tempo-traveller.webp",
+      "images/girnar-poster.webp"
+    ],
+    "shortDescription": "A devotional road journey from Pune to the sacred Girnar hills of Junagadh. Climb the ancient stone steps (or take the ropeway) to Ambaji Mata and Guru Dattatreya, with comfortable stays, pure veg meals and an AC tempo traveller all the way. भक्ती · श्रद्धा · अध्यात्म — चला, करूया पवित्र तीर्थयात्रा!",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Pune → Gujarat · The yatra begins",
+        "description": "Evening departure from Pune in an AC tempo traveller after a short prayer for a safe journey. Drive overnight via Nashik and Surat, with a dinner stop at a clean highway restaurant along the way."
+      },
+      {
+        "day": 2,
+        "title": "Arrive Junagadh · Bhavnath darshan",
+        "description": "Reach Junagadh by afternoon and check in to the hotel. After some rest, visit the Bhavnath Mahadev temple at the foot of Girnar and attend the evening aarti. Early dinner and an early night to prepare for the climb. Overnight in Junagadh."
+      },
+      {
+        "day": 3,
+        "title": "Girnar climb · Ambaji & Guru Dattatreya",
+        "description": "Start before dawn. Climb the stone steps through the forest — about 5,000 steps to the Jain temples and Ambaji Mata, and close to 10,000 to the Guru Dattatreya shikhar — or take the Girnar ropeway up to Ambaji (tickets extra) and continue on foot. Darshan at the summit shrines, then descend and rest. Overnight in Junagadh."
+      },
+      {
+        "day": 4,
+        "title": "Junagadh sights · Return journey",
+        "description": "After breakfast, visit the holy Damodar Kund and the old Uparkot fort if time allows. Begin the return drive to Pune in the afternoon, travelling overnight with a dinner stop on the way."
+      },
+      {
+        "day": 5,
+        "title": "Arrive in Pune",
+        "description": "Reach Pune in the afternoon, carrying prasad, blessings and memories of Girnar."
+      }
+    ],
+    "inclusions": [
+      "AC tempo traveller from Pune and back",
+      "2 nights hotel stay in Junagadh (twin/triple sharing)",
+      "Pure veg meals as per itinerary",
+      "Darshan guidance at Bhavnath and Girnar",
+      "Driver allowance, tolls, parking and fuel",
+      "Drinking water on board"
+    ],
+    "exclusions": [
+      "Girnar ropeway tickets",
+      "Doli or porter charges on Girnar",
+      "Puja, donation and special darshan charges",
+      "Personal expenses and shopping",
+      "Travel insurance",
+      "Anything not listed under inclusions"
+    ],
+    "seoTitle": "Pune to Girnar Darshan Yatra 4N/5D by AC Tempo Traveller | My Yatra",
+    "seoDescription": "4 nights / 5 days Girnar yatra from Pune: Bhavnath aarti, Girnar climb or ropeway to Ambaji and Guru Dattatreya, hotel stay, veg meals and AC tempo traveller.",
+    "updatedAt": "2026-10-21"
   }
 ]
