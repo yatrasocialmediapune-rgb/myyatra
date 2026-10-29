@@ -118,7 +118,7 @@
         <div class="footer__col footer__contact">
           <h2>{{t.footer.talk}}</h2>
           <ul>
-            <li><a href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.footer.whatsappUs}}</a></li>
+            <li><a href="{{waGeneral}}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> {{t.footer.whatsappUs}}: {{waDisplay}}</a></li>
             <li><a href="tel:{{phoneHref}}"><svg class="icon"><use href="#i-phone"/></svg> {{site.phone}}</a></li>
             <li><a href="mailto:{{site.email}}"><svg class="icon"><use href="#i-mail"/></svg> <span style="overflow-wrap:anywhere">{{site.email}}</span></a></li>
             <li><a href="{{lp}}/contact/"><svg class="icon"><use href="#i-pin"/></svg> {{siteL.address.city}}, {{siteL.address.region}}</a></li>
@@ -137,6 +137,7 @@
     <a class="fab__wa" href="{{waGeneral}}" target="_blank" rel="noopener" aria-label="{{t.a11y.chatBrand}}"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
   </div>
 
+  {{{promoHtml}}}
   {{{afterFooter}}}
   <script type="application/json" id="i18n">{{{jsStrings}}}</script>
   <script src="/assets/js/main.js?v={{assetVersion}}" defer></script>

@@ -1,5 +1,8 @@
 {
-  "lang": { "label": "English", "short": "EN" },
+  "lang": {
+    "label": "English",
+    "short": "EN"
+  },
   "a11y": {
     "skip": "Skip to content",
     "home": "{brand} — home",
@@ -37,8 +40,14 @@
     "minTravellers": "Min. {n} travellers",
     "from": "from {price}",
     "save": "Save {amount}",
-    "trips": { "one": "{n} trip", "other": "{n} trips" },
-    "packages": { "one": "{n} package", "other": "{n} packages" },
+    "trips": {
+      "one": "{n} trip",
+      "other": "{n} trips"
+    },
+    "packages": {
+      "one": "{n} package",
+      "other": "{n} packages"
+    },
     "photos": "{n} photos",
     "photoAlt": "{title} — photo {i}",
     "openPhoto": "Open photo {i} of {n}",
@@ -170,19 +179,29 @@
     "galleryAria": "Photo gallery",
     "closeGallery": "Close gallery",
     "prevPhoto": "Previous photo",
-    "nextPhoto": "Next photo"
+    "nextPhoto": "Next photo",
+    "male": "Male",
+    "female": "Female",
+    "fewerMale": "Fewer male travellers",
+    "moreMale": "More male travellers",
+    "fewerFemale": "Fewer female travellers",
+    "moreFemale": "More female travellers"
   },
   "wa": {
     "greeting": "Hi {brand}! I'd like help planning a trip.",
     "tripIntro": "Hi {brand}! I'd like to plan this trip:",
     "month": "Travel month: {m}",
     "travellers": "Travellers: {n}",
-    "people": { "one": "{n} person", "other": "{n} people" },
+    "people": {
+      "one": "{n} person",
+      "other": "{n} people"
+    },
     "closing": "Please share availability and the best price.",
     "collection": "Hi {brand}! I'd like to plan a {name} trip.",
     "interested": "Hi {brand}! I'm interested in a {name} trip.",
     "name": "Name: {v}",
-    "destination": "Destination: {v}"
+    "destination": "Destination: {v}",
+    "mf": "{people} (Male {m}, Female {f})"
   },
   "tours": {
     "metaTitle": "India Tour Packages — {n} Handpicked Trips | {brand}",
@@ -245,12 +264,54 @@
     "listName": "{name} tour packages"
   },
   "pages": {
-    "about": { "name": "About", "title": "About Us", "eyebrow": "About us", "titleHtml": "Small team. <span class=\"accent\">Big</span> love for India.", "lede": "We are a {city}-based team planning thoughtful, well-paced journeys across India, one WhatsApp chat at a time.", "description": "Meet {brand}, a {city}-based travel team planning personal, well-paced tour packages across India." },
-    "contact": { "name": "Contact", "title": "Contact Us", "eyebrow": "Get in touch", "titleHtml": "Let's plan your <span class=\"accent\">trip</span>", "lede": "WhatsApp is the quickest way to reach us. Prefer a call or email? Those work too.", "description": "Contact {brand} in {city} on WhatsApp, phone or email to plan your India tour package." },
-    "faq": { "name": "FAQ", "title": "Frequently Asked Questions", "eyebrow": "Good to know", "titleHtml": "Questions, <span class=\"accent\">answered</span>", "lede": "Everything you need to know about booking, pricing and customising a trip with us.", "description": "Answers to common questions about booking {brand} tour packages, prices, payments and customisation." },
-    "privacy-policy": { "name": "Privacy policy", "title": "Privacy Policy", "eyebrow": "Legal", "titleHtml": "Privacy <span class=\"accent\">policy</span>", "lede": "How we collect, use and protect your information.", "description": "Privacy policy for {brand} tour packages and website." },
-    "terms": { "name": "Terms & conditions", "title": "Terms & Conditions", "eyebrow": "Legal", "titleHtml": "Terms &amp; <span class=\"accent\">conditions</span>", "lede": "The terms that apply when you book a trip with us.", "description": "Terms and conditions for booking tour packages with {brand}." },
-    "cancellation-refund": { "name": "Cancellation & refund", "title": "Cancellation & Refund Policy", "eyebrow": "Legal", "titleHtml": "Cancellation &amp; <span class=\"accent\">refund</span>", "lede": "What happens if your plans change.", "description": "Cancellation and refund policy for {brand} tour packages." },
+    "about": {
+      "name": "About",
+      "title": "About Us",
+      "eyebrow": "About us",
+      "titleHtml": "Small team. <span class=\"accent\">Big</span> love for India.",
+      "lede": "We are a {city}-based team planning thoughtful, well-paced journeys across India, one WhatsApp chat at a time.",
+      "description": "Meet {brand}, a {city}-based travel team planning personal, well-paced tour packages across India."
+    },
+    "contact": {
+      "name": "Contact",
+      "title": "Contact Us",
+      "eyebrow": "Get in touch",
+      "titleHtml": "Let's plan your <span class=\"accent\">trip</span>",
+      "lede": "WhatsApp is the quickest way to reach us. Prefer a call or email? Those work too.",
+      "description": "Contact {brand} in {city} on WhatsApp, phone or email to plan your India tour package."
+    },
+    "faq": {
+      "name": "FAQ",
+      "title": "Frequently Asked Questions",
+      "eyebrow": "Good to know",
+      "titleHtml": "Questions, <span class=\"accent\">answered</span>",
+      "lede": "Everything you need to know about booking, pricing and customising a trip with us.",
+      "description": "Answers to common questions about booking {brand} tour packages, prices, payments and customisation."
+    },
+    "privacy-policy": {
+      "name": "Privacy policy",
+      "title": "Privacy Policy",
+      "eyebrow": "Legal",
+      "titleHtml": "Privacy <span class=\"accent\">policy</span>",
+      "lede": "How we collect, use and protect your information.",
+      "description": "Privacy policy for {brand} tour packages and website."
+    },
+    "terms": {
+      "name": "Terms & conditions",
+      "title": "Terms & Conditions",
+      "eyebrow": "Legal",
+      "titleHtml": "Terms &amp; <span class=\"accent\">conditions</span>",
+      "lede": "The terms that apply when you book a trip with us.",
+      "description": "Terms and conditions for booking tour packages with {brand}."
+    },
+    "cancellation-refund": {
+      "name": "Cancellation & refund",
+      "title": "Cancellation & Refund Policy",
+      "eyebrow": "Legal",
+      "titleHtml": "Cancellation &amp; <span class=\"accent\">refund</span>",
+      "lede": "What happens if your plans change.",
+      "description": "Cancellation and refund policy for {brand} tour packages."
+    },
     "legalNotice": "",
     "aboutImageAlt": "Valley view on a {brand} trip"
   },
@@ -264,13 +325,48 @@
     "home": "Back home"
   },
   "themes": {
-    "Pilgrimage": { "name": "Pilgrimage", "tile": "Pilgrimage", "blurb": "Temples, ghats and sacred circuits at a gentle pace.", "intro": "Sacred journeys planned around darshan timings and aartis, with comfortable stays close to the temples — ideal for travelling with parents and family." },
-    "Honeymoon": { "name": "Honeymoon", "tile": "Honeymoon", "blurb": "Houseboats, hill views and slow mornings for two.", "intro": "Romantic escapes with handpicked stays, private cabs and a few thoughtful surprises along the way." },
-    "Family": { "name": "Family", "tile": "Family", "blurb": "Easy-paced trips that work for every age.", "intro": "Comfortable, well-paced holidays with sensible drive times, family-friendly hotels and something for every age." },
-    "Hill Station": { "name": "Hill Station", "tile": "Hills", "blurb": "Pine forests, tea estates and cool mountain air.", "intro": "Mountain air, tea estates and snow-capped views — our favourite hill escapes, from Kashmir to the Western Ghats." },
-    "Beach": { "name": "Beach", "tile": "Beaches", "blurb": "Coastlines, sunsets and seafood shacks.", "intro": "Sun, sand and seafood along India's coastlines, from quiet shores to lively beach towns." },
-    "Wildlife": { "name": "Wildlife", "tile": "Wildlife", "blurb": "Safaris, national parks and forest stays.", "intro": "Jungle safaris, national parks and forest lodges for travellers who love the wild side of India." },
-    "Weekend": { "name": "Weekend", "tile": "Weekend", "blurb": "Short breaks that fit into two or three days.", "intro": "Short getaways that fit neatly into a long weekend, with minimal travel time and maximum holiday." }
+    "Pilgrimage": {
+      "name": "Pilgrimage",
+      "tile": "Pilgrimage",
+      "blurb": "Temples, ghats and sacred circuits at a gentle pace.",
+      "intro": "Sacred journeys planned around darshan timings and aartis, with comfortable stays close to the temples — ideal for travelling with parents and family."
+    },
+    "Honeymoon": {
+      "name": "Honeymoon",
+      "tile": "Honeymoon",
+      "blurb": "Houseboats, hill views and slow mornings for two.",
+      "intro": "Romantic escapes with handpicked stays, private cabs and a few thoughtful surprises along the way."
+    },
+    "Family": {
+      "name": "Family",
+      "tile": "Family",
+      "blurb": "Easy-paced trips that work for every age.",
+      "intro": "Comfortable, well-paced holidays with sensible drive times, family-friendly hotels and something for every age."
+    },
+    "Hill Station": {
+      "name": "Hill Station",
+      "tile": "Hills",
+      "blurb": "Pine forests, tea estates and cool mountain air.",
+      "intro": "Mountain air, tea estates and snow-capped views — our favourite hill escapes, from Kashmir to the Western Ghats."
+    },
+    "Beach": {
+      "name": "Beach",
+      "tile": "Beaches",
+      "blurb": "Coastlines, sunsets and seafood shacks.",
+      "intro": "Sun, sand and seafood along India's coastlines, from quiet shores to lively beach towns."
+    },
+    "Wildlife": {
+      "name": "Wildlife",
+      "tile": "Wildlife",
+      "blurb": "Safaris, national parks and forest stays.",
+      "intro": "Jungle safaris, national parks and forest lodges for travellers who love the wild side of India."
+    },
+    "Weekend": {
+      "name": "Weekend",
+      "tile": "Weekend",
+      "blurb": "Short breaks that fit into two or three days.",
+      "intro": "Short getaways that fit neatly into a long weekend, with minimal travel time and maximum holiday."
+    }
   },
   "states": {},
   "statesShort": {
@@ -293,6 +389,19 @@
     "greeting": "Hi {brand}! I'd like help planning a trip.",
     "name": "Name: {v}",
     "destination": "Destination: {v}",
-    "removeFilter": "Remove filter {x}"
+    "removeFilter": "Remove filter {x}",
+    "mf": "{people} (Male {m}, Female {f})",
+    "total": "Total: {n} travellers"
+  },
+  "promo": {
+    "eyebrow": "Diwali special offer",
+    "badge": "Diwali offer",
+    "text": "Celebrate this Diwali with darshan at Girnar, Somnath and Dwarka — at a special festive price.",
+    "book": "Book on WhatsApp",
+    "view": "View trip details",
+    "later": "Maybe later",
+    "close": "Close offer",
+    "perPerson": "per person",
+    "wa": "Hi {brand}! I would like to book the Diwali offer: {title}."
   }
 }

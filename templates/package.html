@@ -114,13 +114,22 @@
             </select>
           </label>
           <div class="field">
-            <span id="people-label">{{t.pkg.travellers}}</span>
-            <div class="stepper" role="group" aria-labelledby="people-label">
-              <button type="button" data-step="-1" aria-label="{{t.pkg.fewer}}"><svg class="icon"><use href="#i-minus"/></svg></button>
-              <input type="number" inputmode="numeric" value="{{defaultPeople}}" min="1" max="50" data-wa-people aria-labelledby="people-label">
-              <button type="button" data-step="1" aria-label="{{t.pkg.more}}"><svg class="icon"><use href="#i-plus"/></svg></button>
+            <span id="male-label">{{t.pkg.male}}</span>
+            <div class="stepper" role="group" aria-labelledby="male-label">
+              <button type="button" data-step="-1" data-for="male" aria-label="{{t.pkg.fewerMale}}"><svg class="icon"><use href="#i-minus"/></svg></button>
+              <input type="number" inputmode="numeric" value="{{defaultMale}}" min="0" max="50" data-wa-count="male" aria-labelledby="male-label">
+              <button type="button" data-step="1" data-for="male" aria-label="{{t.pkg.moreMale}}"><svg class="icon"><use href="#i-plus"/></svg></button>
             </div>
           </div>
+          <div class="field">
+            <span id="female-label">{{t.pkg.female}}</span>
+            <div class="stepper" role="group" aria-labelledby="female-label">
+              <button type="button" data-step="-1" data-for="female" aria-label="{{t.pkg.fewerFemale}}"><svg class="icon"><use href="#i-minus"/></svg></button>
+              <input type="number" inputmode="numeric" value="{{defaultFemale}}" min="0" max="50" data-wa-count="female" aria-labelledby="female-label">
+              <button type="button" data-step="1" data-for="female" aria-label="{{t.pkg.moreFemale}}"><svg class="icon"><use href="#i-plus"/></svg></button>
+            </div>
+          </div>
+          <p class="planner__total" data-wa-total aria-live="polite"></p>
         </div>
 
         <a class="btn btn--primary btn--lg btn--block" href="{{waTrip}}" target="_blank" rel="noopener" data-wa-link>

@@ -194,8 +194,11 @@
   if (planner) {
     var num = planner.getAttribute('data-wa-number');
     var monthSel = $('[data-wa-month]', planner);
-    var peopleInp = $('[data-wa-people]', planner);
-    var minP = parseInt(peopleInp.min, 10) || 1, maxP = parseInt(peopleInp.max, 10) || 50;
+    // Separate male / female counts; the WhatsApp message includes both and the total.
+    var counts = { male: $('[data-wa-count="male"]', planner), female: $('[data-wa-count="female"]', planner) };
+    var totalEl = $('[data-wa-total]', planner);
+    var MAX = 50;
+    var val = function (k) { return Math.max(0, Math.min(MAX, parseInt(counts[k].value, 10) || 0)); };
 
     // Next 12 months, computed in the browser so they never go stale.
     var now = new Date();
@@ -208,9 +211,11 @@
     }
 
     var buildMsg = function () {
-      var people = Math.max(minP, Math.min(maxP, parseInt(peopleInp.value, 10) || minP));
+      var m = val('male'), f = val('female'), people = m + f;
       var month = monthSel.value || tx('flexible', 'Flexible');
-      var who = people === 1 ? tx('personOne', '{n} person', { n: people }) : tx('personOther', '{n} people', { n: people });
+      var who = tx('mf', '{people} (Male {m}, Female {f})', {
+        people: people === 1 ? tx('personOne', '{n} person', { n: people }) : tx('personOther', '{n} people', { n: people }), m: m, f: f
+      });
       return [
         tx('tripIntro', 'Hi! I\'d like to plan this trip:'),
         '',
@@ -224,23 +229,56 @@
       ].join('\n');
     };
     var sync = function () {
-      var v = parseInt(peopleInp.value, 10);
-      $('[data-step="-1"]', planner).disabled = v <= minP;
-      $('[data-step="1"]', planner).disabled = v >= maxP;
+      var total = val('male') + val('female');
+      ['male', 'female'].forEach(function (k) {
+        // At least one traveller overall, so the last one can't be removed.
+        $('[data-step="-1"][data-for="' + k + '"]', planner).disabled = val(k) <= 0 || total <= 1;
+        $('[data-step="1"][data-for="' + k + '"]', planner).disabled = val(k) >= MAX;
+      });
+      if (totalEl) totalEl.textContent = tx('total', 'Total: {n} travellers', { n: total });
       var href = 'https://wa.me/' + num + '?text=' + encodeURIComponent(buildMsg());
       $$('[data-wa-link]').forEach(function (a) { a.href = href; });
     };
     $$('[data-step]', planner).forEach(function (b) {
       b.addEventListener('click', function () {
-        var v = (parseInt(peopleInp.value, 10) || minP) + parseInt(b.getAttribute('data-step'), 10);
-        peopleInp.value = Math.max(minP, Math.min(maxP, v));
+        var k = b.getAttribute('data-for');
+        counts[k].value = Math.max(0, Math.min(MAX, val(k) + parseInt(b.getAttribute('data-step'), 10)));
         sync();
       });
     });
-    peopleInp.addEventListener('input', sync);
-    peopleInp.addEventListener('change', function () { peopleInp.value = Math.max(minP, Math.min(maxP, parseInt(peopleInp.value, 10) || minP)); sync(); });
+    ['male', 'female'].forEach(function (k) {
+      counts[k].addEventListener('input', sync);
+      counts[k].addEventListener('change', function () {
+        counts[k].value = val(k);
+        if (val('male') + val('female') < 1) counts[k].value = 1;
+        sync();
+      });
+    });
     monthSel.addEventListener('change', sync);
     sync();
+  }
+
+  /* ---------- Festive offer popup: once per visit, not on the offer's own page, off after the end date ---------- */
+  var promo = $('[data-promo]');
+  if (promo && typeof promo.showModal === 'function') {
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var d0 = new Date(), todayStr = d0.getFullYear() + '-' + pad(d0.getMonth() + 1) + '-' + pad(d0.getDate());
+    var until = promo.getAttribute('data-until');
+    var seenKey = 'promo-seen:' + promo.getAttribute('data-key');
+    var seen = false;
+    try { seen = !!sessionStorage.getItem(seenKey); } catch (e) { /* storage blocked: show once per page load */ }
+    var here = location.pathname.replace(/^\/(en|hi)(?=\/)/, '');
+    var onOfferPage = here === promo.getAttribute('data-skip');
+    var closePromo = function () { if (promo.open) promo.close(); };
+    $$('[data-promo-close]', promo).forEach(function (b) { b.addEventListener('click', closePromo); });
+    promo.addEventListener('click', function (e) { if (e.target === promo) closePromo(); }); // backdrop
+    if ((!until || todayStr <= until) && !seen && !onOfferPage) {
+      setTimeout(function () {
+        if (doc.classList.contains('menu-open') || document.querySelector('dialog[open]')) return;
+        promo.showModal();
+        try { sessionStorage.setItem(seenKey, '1'); } catch (e) { /* ignore */ }
+      }, 1500);
+    }
   }
 
   /* ---------- Language menu: close on outside click or Escape ---------- */
@@ -258,7 +296,8 @@
       if (v('name')) lines.push(tx('name', 'Name: {v}', { v: v('name') }));
       if (v('destination')) lines.push(tx('destination', 'Destination: {v}', { v: v('destination') }));
       if (v('month')) lines.push(tx('month', 'Travel month: {m}', { m: v('month') }));
-      if (v('people')) lines.push(tx('travellers', 'Travellers: {n}', { n: v('people') }));
+      var mm = parseInt(v('male'), 10) || 0, ff = parseInt(v('female'), 10) || 0;
+      if (mm + ff > 0) lines.push(tx('travellers', 'Travellers: {n}', { n: tx('mf', '{people} (Male {m}, Female {f})', { people: mm + ff, m: mm, f: ff }) }));
       if (v('notes')) lines.push('', v('notes'));
       window.open('https://wa.me/' + form.getAttribute('data-wa-number') + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
     });

@@ -1,5 +1,5 @@
 <ul class="contact-grid" role="list">
-  <li data-reveal style="--i:0"><a class="contact-card contact-card--wa" href="{{waGeneral}}" target="_blank" rel="noopener"><span class="why__icon"><svg class="icon"><use href="#i-whatsapp"/></svg></span><span class="meta">WhatsApp</span><strong>{{site.phone}}</strong><small>हमसे जुड़ने का सबसे तेज़ तरीक़ा</small></a></li>
+  <li data-reveal style="--i:0"><a class="contact-card contact-card--wa" href="{{waGeneral}}" target="_blank" rel="noopener"><span class="why__icon"><svg class="icon"><use href="#i-whatsapp"/></svg></span><span class="meta">WhatsApp</span><strong>{{waDisplay}}</strong><small>हमसे जुड़ने का सबसे तेज़ तरीक़ा</small></a></li>
   <li data-reveal style="--i:1"><a class="contact-card" href="tel:{{phoneHref}}"><span class="why__icon"><svg class="icon"><use href="#i-phone"/></svg></span><span class="meta">कॉल</span><strong>{{site.phone}}</strong><small>{{siteL.hours}}</small></a></li>
   <li data-reveal style="--i:2"><a class="contact-card" href="mailto:{{site.email}}"><span class="why__icon"><svg class="icon"><use href="#i-mail"/></svg></span><span class="meta">ईमेल</span><strong>{{site.email}}</strong><small>एक कार्यदिवस में जवाब</small></a></li>
   <li data-reveal style="--i:3"><div class="contact-card"><span class="why__icon"><svg class="icon"><use href="#i-pin"/></svg></span><span class="meta">ऑफ़िस</span><strong>{{siteL.address.city}}, {{siteL.address.region}}</strong><small>मिलने के लिए पहले समय तय करें</small></div></li>
@@ -16,8 +16,9 @@
     <div class="enquiry__grid">
       <label class="field"><span>आपका नाम</span><input class="input" name="name" autocomplete="name" required></label>
       <label class="field"><span>जगह</span><input class="input" name="destination" list="destinations" placeholder="जैसे केरल"></label>
-      <label class="field"><span>यात्रा का महीना</span><input class="input" name="month" placeholder="जैसे दिसंबर"></label>
-      <label class="field"><span>यात्री</span><input class="input" name="people" type="number" inputmode="numeric" min="1" max="99" value="2"></label>
+      <label class="field field--full"><span>यात्रा का महीना</span><input class="input" name="month" placeholder="जैसे दिसंबर"></label>
+      <label class="field"><span>पुरुष यात्री</span><input class="input" name="male" type="number" inputmode="numeric" min="0" max="99" value="1"></label>
+      <label class="field"><span>महिला यात्री</span><input class="input" name="female" type="number" inputmode="numeric" min="0" max="99" value="1"></label>
       <label class="field field--full"><span>और कुछ?</span><textarea class="input" name="notes" placeholder="बजट, होटल की पसंद, कोई ख़ास मौक़ा…"></textarea></label>
     </div>
     <datalist id="destinations">{{{destinationOptions}}}</datalist>

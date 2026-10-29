@@ -971,7 +971,7 @@
      ========================================================================== */
   function viewSettings() {
     var s = S.siteDraft = clone(S.site);
-    s.address = s.address || {}; s.socials = s.socials || {}; s.stats = s.stats || {};
+    s.address = s.address || {}; s.socials = s.socials || {}; s.stats = s.stats || {}; s.promo = s.promo || { enabled: false, packageId: (S.packages[0] || {}).id, until: '' };
     s.faqs = Array.isArray(s.faqs) ? s.faqs : []; s.testimonials = Array.isArray(s.testimonials) ? s.testimonials : [];
     setTop('Site settings', '<button class="btn btn--primary btn--sm" type="button" data-action="save-site">' + icon('a-check') + '<span>Save</span></button>');
     var inp = function (path, label, opts) {
@@ -1002,6 +1002,12 @@
       inp('stats.travellers', 'Happy travellers', { num: true, type: 'number' }) + inp('stats.yearsPlanning', 'Years planning trips', { num: true, type: 'number' }) + '</div></section>' +
       '<section class="panel"><div class="panel__head"><div><h2>Testimonials</h2><p>Only publish genuine reviews, with permission.</p></div><button class="btn btn--ghost btn--sm" type="button" data-action="t-add">' + icon('a-plus') + ' Add</button></div><ul class="repeat" id="rep-t"></ul></section>' +
       '<section class="panel"><div class="panel__head"><h2>FAQs</h2><button class="btn btn--ghost btn--sm" type="button" data-action="q-add">' + icon('a-plus') + ' Add</button></div><ul class="repeat" id="rep-q"></ul></section>' +
+      '<section class="panel"><div class="panel__head"><div><h2>Offer popup</h2><p>A popup that appears once per visit to promote one trip (for example a Diwali offer). It shows the trip’s price and sale price, and hides itself automatically after the end date. The popup text is in data/i18n under “promo”.</p></div></div>' +
+      '<label class="toggle"><input type="checkbox" data-s="promo.enabled" data-type="bool"' + (s.promo && s.promo.enabled ? ' checked' : '') + '><span class="toggle__track"></span><span>Show the offer popup<small>Turn off to hide it everywhere</small></span></label>' +
+      '<div class="grid2">' +
+      field('Trip to promote', '<select class="input" data-s="promo.packageId">' + S.packages.map(function (p) { return '<option value="' + esc(p.id) + '"' + (s.promo && s.promo.packageId === p.id ? ' selected' : '') + '>' + esc(plain(p.title)) + (p.published ? '' : ' (draft)') + '</option>'; }).join('') + '</select>', 'Set its sale price in the package editor.') +
+      field('Show until (last day)', '<input class="input" type="date" data-s="promo.until" value="' + esc((s.promo && s.promo.until) || '') + '">', 'Leave empty to keep it running.', { key: 's:promo.until' }) +
+      '</div></section>' +
       '<section class="panel"><div class="panel__head"><div><h2>Translations</h2><p>Marathi and Hindi versions of the text above. Empty fields show the English text.</p></div></div>' +
       '<div class="tabs" role="tablist" aria-label="Translation language">' + TR_LANGS.map(function (l, i) { return '<button type="button" role="tab" class="tab" data-action="st-tab" data-lang="' + l[0] + '" aria-selected="' + (i === 0) + '">' + l[1] + '</button>'; }).join('') + '</div>' +
       '<div id="st-body"></div></section>' +
@@ -1013,7 +1019,7 @@
     var form = $('#site-form');
     form.addEventListener('input', function (e) {
       var t = e.target;
-      if (t.dataset.s) setPath(s, t.dataset.s, t.dataset.type === 'int' ? (parseInt(t.value, 10) || 0) : t.value);
+      if (t.dataset.s) setPath(s, t.dataset.s, t.dataset.type === 'int' ? (parseInt(t.value, 10) || 0) : t.dataset.type === 'bool' ? t.checked : t.value);
       else if (t.dataset.st) setPath(siteTr(), t.dataset.st, t.value);
       else if (t.dataset.stl) {
         var o = siteTr(), list = o[t.dataset.stl] = o[t.dataset.stl] || [];

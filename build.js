@@ -200,13 +200,14 @@ function loadData() {
 
 /* ---------- Languages ----------
    Each language is generated as its own set of static pages:
-   English at /, Marathi at /mr/, Hindi at /hi/. UI text lives in data/i18n/{code}.json
-   (missing keys fall back to English); package and site text can be translated in the
-   "translations" field of packages.json / site.json (missing fields fall back to English). */
+   Marathi at / (the main language), Hindi at /hi/, English at /en/. UI text lives in
+   data/i18n/{code}.json (missing keys fall back to English); package and site text can be
+   translated in the "translations" field of packages.json / site.json (missing fields fall
+   back to English). The first entry is the default language served at the site root. */
 const LANGS = [
-  { code: 'en', prefix: '', locale: 'en-IN', og: 'en_IN' },
-  { code: 'mr', prefix: '/mr', locale: 'mr-IN', og: 'mr_IN' },
-  { code: 'hi', prefix: '/hi', locale: 'hi-IN', og: 'hi_IN' }
+  { code: 'mr', prefix: '', locale: 'mr-IN', og: 'mr_IN' },
+  { code: 'hi', prefix: '/hi', locale: 'hi-IN', og: 'hi_IN' },
+  { code: 'en', prefix: '/en', locale: 'en-IN', og: 'en_IN' }
 ];
 const FONTS_LATIN = 'family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800';
 const FONTS_DEVANAGARI = '&family=Mukta:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500..700';
@@ -375,6 +376,8 @@ function build() {
       assetVersion,
       fontUrl: `https://fonts.googleapis.com/css2?${FONTS_LATIN}${L.code === 'en' ? '' : FONTS_DEVANAGARI}&display=swap`,
       phoneHref: String(site.phone).replace(/[^\d+]/g, ''),
+      // "917798302630" → "+91 77983 02630"
+      waDisplay: String(site.whatsapp).replace(/^(\d{2})(\d{5})(\d{5})$/, '+$1 $2 $3'),
       waGeneral: wa(siteL.whatsappGreeting || t('wa.greeting')),
       ogImage: abs('/' + String(site.defaultOgImage || '').replace(/^\/+/, '')),
       footerStates: states.map((s) => `<li><a href="${lp}/states/${stateKey(s)}/">${esc(t('footer.stateTours', { state: stateName(s) }))}</a></li>`).join(''),
@@ -383,6 +386,37 @@ function build() {
         : '',
       jsStrings: JSON.stringify(d.js || {}).replace(/</g, '\\u003c')
     };
+
+    /* ----- Festive offer popup (site.json → promo). Hidden by main.js after promo.until. ----- */
+    base.promoHtml = '';
+    const promo = site.promo || {};
+    const promoPkg = promo.enabled && packages.find((p) => p.id === promo.packageId);
+    if (promoPkg && (!promo.until || promo.until >= today)) {
+      const waPromo = wa(t('promo.wa', { title: promoPkg.plainTitle }) + '\n' + abs(promoPkg.url));
+      base.promoHtml = `<dialog class="promo" id="promo" aria-labelledby="promo-title" data-promo data-until="${esc(promo.until || '')}" data-key="${esc(promo.packageId + ':' + (promo.until || ''))}" data-skip="${esc(promoPkg.path)}">
+    <div class="promo__art">
+      ${img(promo.image || promoPkg.coverImage, '', { sizes: '440px' })}
+      <span class="stamp stamp--lg promo__stamp"><span>${esc(t('promo.badge'))}</span></span>
+      <button class="promo__close" type="button" data-promo-close aria-label="${esc(t('promo.close'))}"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="promo__body">
+      <p class="eyebrow">${esc(t('promo.eyebrow'))}</p>
+      <h2 id="promo-title">${titleHtml(promoPkg.title)}</h2>
+      <p class="meta">${esc(nd(promoPkg))} · ${esc(promoPkg.cities.join(' · '))}</p>
+      <p class="promo__text">${esc(t('promo.text'))}</p>
+      <div class="promo__price">
+        ${promoPkg.priceWas ? `<span class="price__was">${promoPkg.priceWas}</span>` : ''}
+        <span class="price__now">${promoPkg.priceNow}</span><span class="price__unit">${esc(t('promo.perPerson'))}</span>
+        ${promoPkg.saveAmount ? `<span class="badge">${esc(t('fmt.save', { amount: promoPkg.saveAmount }))}</span>` : ''}
+      </div>
+      <div class="promo__actions">
+        <a class="btn btn--primary btn--lg btn--block" href="${esc(waPromo)}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> ${esc(t('promo.book'))}</a>
+        <a class="btn btn--outline btn--block" href="${promoPkg.url}">${esc(t('promo.view'))} <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+      <button class="promo__later" type="button" data-promo-close>${esc(t('promo.later'))}</button>
+    </div>
+  </dialog>`;
+    }
 
     const layout = (ctx) => {
       const p = ctx.path || '/';
@@ -421,10 +455,12 @@ function build() {
       const canonical = abs(p.url);
       const gallery = (p.gallery.length ? p.gallery : [p.coverImage]);
       const rel = related(p, packages);
+      // Default traveller split for the planner (e.g. min 2 → 1 male + 1 female).
+      const defTotal = Math.max(2, p.minPeople), defM = Math.ceil(defTotal / 2), defF = defTotal - defM;
       const waTripText = [
         t('wa.tripIntro'), '',
         `*${p.plainTitle}* (${nd(p, 'fmt.ndShort')})`, t('wa.month', { m: t('pkg.flexible') }),
-        t('wa.travellers', { n: t('wa.people', { n: Math.max(2, p.minPeople) }) }), '', canonical, '', t('wa.closing')
+        t('wa.travellers', { n: t('wa.mf', { people: t('wa.people', { n: defM + defF }), m: defM, f: defF }) }), '', canonical, '', t('wa.closing')
       ].join('\n');
 
       const body = render(tpl(path.join(TPL, 'package.html')), Object.assign({}, base, {
@@ -466,7 +502,7 @@ function build() {
         wasHtml: p.priceWas ? `<span class="price__was">${p.priceWas}</span>` : '',
         saveHtml: p.saveAmount ? `<span class="badge">${esc(t('fmt.save', { amount: p.saveAmount }))}</span>` : '',
         priceNow: p.priceNow,
-        defaultPeople: Math.max(2, p.minPeople),
+        defaultMale: defM, defaultFemale: defF,
         waTrip: wa(waTripText),
         relatedSection: rel.length ? `
 <section class="section section--cv" aria-labelledby="related-title" style="padding-bottom:0">
@@ -772,7 +808,7 @@ function build() {
       const meta = (d.pages && d.pages[pg.slug]) || {};
       const own = path.join(TPL, 'pages', L.code, pg.slug + '.html');
       const bodyFile = fs.existsSync(own) ? own : path.join(TPL, 'pages', 'en', pg.slug + '.html');
-      const bodyLang = bodyFile === own ? L : LANGS[0];
+      const bodyLang = bodyFile === own ? L : LANGS.find((l) => l.code === 'en');
       const faqHtml = (siteL.faqs || []).map((f, i) => `<details${i === 0 ? ' open' : ''}><summary>${esc(f.q)}<span class="plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span></summary><div><p>${esc(f.a)}</p></div></details>`).join('');
       const ctx = Object.assign({}, listingBase, {
         faqHtml,
@@ -862,7 +898,7 @@ function serve(port) {
     }
     if (!fs.existsSync(file)) {
       // Like Cloudflare Pages: serve the nearest 404.html (/mr/404.html for Marathi pages, etc.).
-      const langDir = /^\/(mr|hi)\//.exec(p);
+      const langDir = /^\/(en|hi)\//.exec(p);
       const nf = path.join(DIST, langDir ? langDir[1] : '', '404.html');
       res.writeHead(404, { 'Content-Type': types['.html'] });
       return res.end(fs.existsSync(nf) ? fs.readFileSync(nf) : 'Not found');

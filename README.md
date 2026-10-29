@@ -53,7 +53,7 @@ Pages that `build.js` generates:
 | `/states/{state}/` | Packages in a state (only for states that have packages) |
 | `/themes/{theme}/` | Packages for a theme (empty themes show "coming soon" and are `noindex`) |
 | `/about/`, `/contact/`, `/faq/` | Static pages |
-| `/mr/…`, `/hi/…` | The same pages in Marathi and Hindi (every page above exists in all three languages) |
+| `/hi/…`, `/en/…` | The same pages in Hindi and English. Pages without a prefix are Marathi, the default language (every page exists in all three languages) |
 | `/privacy-policy/`, `/terms/`, `/cancellation-refund/` | Policy pages (placeholder text) |
 | `/404.html` | Custom "lost boarding pass" page |
 | `/sitemap.xml`, `/robots.txt`, `/_headers` | SEO and Cloudflare caching/security headers |
@@ -270,13 +270,15 @@ Edit `data/packages.json`, then commit and push. Each package looks like this:
 
 ## Languages: English, Marathi, Hindi
 
-The site is built three times from the same templates:
+The site is built three times from the same templates. **Marathi is the main language**: visitors who open the website see Marathi first.
 
 | Language | Address | Example |
 | --- | --- | --- |
-| English | `/` | `/tours/kerala-hills-and-backwaters-5n-6d/` |
-| मराठी (Marathi) | `/mr/` | `/mr/tours/kerala-hills-and-backwaters-5n-6d/` |
+| मराठी (Marathi, default) | `/` | `/tours/kerala-hills-and-backwaters-5n-6d/` |
 | हिंदी (Hindi) | `/hi/` | `/hi/tours/kerala-hills-and-backwaters-5n-6d/` |
+| English | `/en/` | `/en/tours/kerala-hills-and-backwaters-5n-6d/` |
+
+To change which language opens first, reorder `LANGS` at the top of `build.js`. The first entry is served at the site root.
 
 - The globe button in the header (and the pills in the mobile menu) switches language and stays on the same page.
 - Each page tells Google about its other languages with `hreflang` links, and all three versions are in `sitemap.xml`.
@@ -296,6 +298,19 @@ The site is built three times from the same templates:
 Anything not translated simply shows in English, so a new package can go live in English first and be translated later. In the admin panel, the counter on each language tab (e.g. **मराठी 12/12**) shows how much of a package is translated.
 
 > The Marathi and Hindi text was written as a first draft. Please have a native speaker read through it before promoting the site.
+
+## Offer popup (e.g. Diwali)
+
+A popup promotes one trip at its sale price. It appears about 1.5 seconds after a visitor opens the site, once per visit. It doesn't appear on that trip's own page, and it hides itself automatically after the end date.
+
+- **Turn it on or off, pick the trip and set the last day:** Admin → Site settings → **Offer popup** (stored as `promo` in `data/site.json`).
+- **Price shown:** the trip's own price and sale price. Change them in the package editor.
+- **Popup text** (badge, heading, button labels) in each language: `promo` in `data/i18n/mr.json`, `hi.json` and `en.json`.
+- **Picture:** `promo.image` in `site.json` (currently the Diwali Girnar artwork).
+
+## Phone and WhatsApp numbers
+
+The call number (`phone`) and the WhatsApp number (`whatsapp`, digits only with country code) are separate in `site.json`, and both can be changed in Admin → Site settings. Every "Plan on WhatsApp" button, the trip planner and the contact form use the WhatsApp number. When booking, visitors choose the number of **male** and **female** travellers, and both counts are included in the WhatsApp message.
 
 ## How it works (for developers)
 

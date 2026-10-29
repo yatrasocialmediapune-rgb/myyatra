@@ -1,5 +1,218 @@
 [
   {
+    "id": "pkg-girnar-somnath-dwarka-01",
+    "slug": "girnar-somnath-dwarka-darshan-yatra-6n-7d",
+    "title": "Shri Girnar – Somnath – Dwarka *Darshan* Yatra",
+    "state": "Gujarat",
+    "cities": [
+      "Junagadh",
+      "Girnar",
+      "Somnath",
+      "Dwarka"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Family"
+    ],
+    "nights": 6,
+    "days": 7,
+    "startCity": "Pune",
+    "minPeople": 2,
+    "mealPlan": "Pure veg meals included",
+    "price": 20000,
+    "salePrice": 14999,
+    "featured": true,
+    "published": true,
+    "coverImage": "images/girnar-sunrise.svg",
+    "gallery": [
+      "images/girnar-sunrise.svg",
+      "images/girnar-steps.webp",
+      "images/somnath-shore.svg",
+      "images/dwarka-temple.svg",
+      "images/girnar-tempo-traveller.webp",
+      "images/girnar-poster.webp"
+    ],
+    "shortDescription": "Three of Gujarat's holiest journeys in one trip from Pune: climb Girnar (or ride the ropeway) to Ambaji and Guru Dattatreya, attend the sea-side aarti at Somnath Jyotirlinga and pray at Dwarkadhish and Nageshwar — with hotel stays, pure veg meals and an AC tempo traveller all the way.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Pune → Gujarat · The yatra begins",
+        "description": "Evening departure from Pune in an AC tempo traveller after a short prayer for a safe journey. Overnight drive towards Saurashtra, with a dinner stop at a clean highway restaurant."
+      },
+      {
+        "day": 2,
+        "title": "Arrive Junagadh · Bhavnath aarti",
+        "description": "Reach Junagadh by afternoon and check in. After some rest, visit the Bhavnath Mahadev temple at Girnar Taleti, the foot of the holy mountain, and attend the evening aarti. Early dinner and an early night before the climb. Overnight in Junagadh."
+      },
+      {
+        "day": 3,
+        "title": "Girnar darshan · Steps or ropeway",
+        "description": "Set out before sunrise. Climb the old stone stairway through the forest, or take the Girnar ropeway up to Ambaji (tickets extra) for sweeping views of the green valleys. Pray at Ambaji Mata and the marble Jain temples; devotees who wish to go higher continue to the Guru Dattatreya shikhar. Come down at your own pace and rest at the hotel. Overnight in Junagadh."
+      },
+      {
+        "day": 4,
+        "title": "Junagadh heritage → Somnath",
+        "description": "After breakfast, explore Junagadh's history: the hilltop Uparkot fort with its rock-cut caves and stepwells, the ornate Mahabat Maqbara and the Darbar Hall Museum. Drive about two hours to Somnath for the evening aarti and the light-and-sound show by the sea. Overnight in Somnath."
+      },
+      {
+        "day": 5,
+        "title": "Somnath darshan → Dwarka",
+        "description": "Early morning darshan at the Somnath Jyotirlinga, then Bhalka Tirth and the Triveni Sangam. Drive along the coast to Dwarka, stopping at Kirti Mandir in Porbandar. Evening aarti at the Dwarkadhish temple and a walk by Gomti Ghat. Overnight in Dwarka."
+      },
+      {
+        "day": 6,
+        "title": "Nageshwar, Bet Dwarka & return journey",
+        "description": "Morning darshan at Nageshwar Jyotirlinga, a short ferry from Okha to Bet Dwarka, then Gopi Talav and the Rukmini Devi temple. After an early dinner, begin the overnight drive back towards Pune."
+      },
+      {
+        "day": 7,
+        "title": "Arrive in Pune",
+        "description": "Reach Pune by evening, carrying prasad and blessings from Girnar, Somnath and Dwarka."
+      }
+    ],
+    "inclusions": [
+      "AC tempo traveller from Pune and back",
+      "4 nights hotel stay — 2 in Junagadh, 1 in Somnath, 1 in Dwarka (twin/triple sharing)",
+      "Pure veg meals as per itinerary",
+      "Darshan guidance at every temple",
+      "Driver allowance, tolls, parking and fuel",
+      "Drinking water on board"
+    ],
+    "exclusions": [
+      "Girnar ropeway and Bet Dwarka ferry tickets",
+      "Light-and-sound show tickets",
+      "Doli or porter charges on Girnar",
+      "Puja, donation and special darshan charges",
+      "Entry fees at monuments and museums",
+      "Personal expenses, travel insurance and anything not listed under inclusions"
+    ],
+    "seoTitle": "Girnar Somnath Dwarka Darshan Yatra from Pune 6N/7D | My Yatra",
+    "seoDescription": "6 nights / 7 days pilgrimage from Pune by AC tempo traveller: Girnar climb or ropeway, Somnath Jyotirlinga aarti, Dwarkadhish and Nageshwar darshan, hotel stays and veg meals.",
+    "updatedAt": "2026-10-30",
+    "translations": {
+      "mr": {
+        "title": "श्री गिरनार – सोमनाथ – द्वारका *दर्शन* यात्रा",
+        "startCity": "पुणे",
+        "cities": [
+          "जुनागढ",
+          "गिरनार",
+          "सोमनाथ",
+          "द्वारका"
+        ],
+        "mealPlan": "शुद्ध शाकाहारी जेवण समाविष्ट",
+        "shortDescription": "पुण्याहून एकाच यात्रेत गुजरातमधील तीन पवित्र धामे: गिरनार चढून (किंवा रोपवेने) अंबाजी आणि गुरु दत्तात्रेयांचे दर्शन, समुद्राकाठच्या सोमनाथ ज्योतिर्लिंगाची आरती आणि द्वारकाधीश व नागेश्वरचे दर्शन — हॉटेल मुक्काम, शुद्ध शाकाहारी जेवण आणि संपूर्ण प्रवास AC टेम्पो ट्रॅव्हलरने.",
+        "itinerary": [
+          {
+            "title": "पुणे → गुजरात · यात्रेची सुरुवात",
+            "description": "सुखरूप प्रवासासाठी छोट्या प्रार्थनेनंतर संध्याकाळी AC टेम्पो ट्रॅव्हलरने पुण्याहून प्रस्थान. सौराष्ट्राकडे रात्रभर प्रवास, वाटेत स्वच्छ हायवे रेस्टॉरंटमध्ये रात्रीचे जेवण."
+          },
+          {
+            "title": "जुनागढ आगमन · भवनाथ आरती",
+            "description": "दुपारपर्यंत जुनागढला पोहोचून हॉटेलमध्ये चेक-इन. विश्रांतीनंतर पवित्र पर्वताच्या पायथ्याशी, गिरनार तळेटी येथील भवनाथ महादेव मंदिराला भेट आणि संध्याकाळची आरती. चढाईपूर्वी लवकर जेवण आणि लवकर विश्रांती. मुक्काम जुनागढ."
+          },
+          {
+            "title": "गिरनार दर्शन · पायऱ्या किंवा रोपवे",
+            "description": "सूर्योदयापूर्वी निघा. जंगलातून जाणाऱ्या प्राचीन दगडी पायऱ्या चढा, किंवा गिरनार रोपवेने अंबाजीपर्यंत जा (तिकीट वेगळे) आणि हिरव्यागार दऱ्यांचे विहंगम दृश्य पाहा. अंबाजी माता आणि संगमरवरी जैन मंदिरांचे दर्शन; ज्यांना आणखी वर जायचे आहे ते गुरु दत्तात्रेय शिखरापर्यंत जाऊ शकतात. आपल्या गतीने खाली उतरा आणि हॉटेलवर विश्रांती. मुक्काम जुनागढ."
+          },
+          {
+            "title": "जुनागढ वारसा दर्शन → सोमनाथ",
+            "description": "नाश्त्यानंतर जुनागढचा इतिहास पाहा: कोरीव लेणी आणि पायऱ्यांच्या विहिरी असलेला डोंगरावरील उपरकोट किल्ला, नक्षीदार महाबत मकबरा आणि दरबार हॉल संग्रहालय. सुमारे दोन तासांत सोमनाथ — संध्याकाळची आरती आणि समुद्राकाठचा लाइट-अँड-साउंड शो. मुक्काम सोमनाथ."
+          },
+          {
+            "title": "सोमनाथ दर्शन → द्वारका",
+            "description": "पहाटे सोमनाथ ज्योतिर्लिंगाचे दर्शन, नंतर भालका तीर्थ आणि त्रिवेणी संगम. पोरबंदरच्या कीर्ती मंदिराला थांबत किनारपट्टीने द्वारकेकडे. द्वारकाधीश मंदिरात संध्याकाळची आरती आणि गोमती घाटावर फेरफटका. मुक्काम द्वारका."
+          },
+          {
+            "title": "नागेश्वर, बेट द्वारका आणि परतीचा प्रवास",
+            "description": "सकाळी नागेश्वर ज्योतिर्लिंगाचे दर्शन, ओखा येथून बोटीने बेट द्वारका, नंतर गोपी तलाव आणि रुक्मिणी देवी मंदिर. लवकर रात्रीचे जेवण करून पुण्याकडे रात्रभराचा परतीचा प्रवास."
+          },
+          {
+            "title": "पुण्यात आगमन",
+            "description": "गिरनार, सोमनाथ आणि द्वारकेचा प्रसाद आणि आशीर्वाद घेऊन संध्याकाळपर्यंत पुण्यात आगमन."
+          }
+        ],
+        "inclusions": [
+          "पुण्याहून ये-जा AC टेम्पो ट्रॅव्हलर",
+          "4 रात्री हॉटेल मुक्काम — जुनागढ 2, सोमनाथ 1, द्वारका 1 (दोघे/तिघे शेअरिंग)",
+          "प्लॅननुसार शुद्ध शाकाहारी जेवण",
+          "प्रत्येक मंदिरात दर्शनासाठी मार्गदर्शन",
+          "ड्रायव्हर भत्ता, टोल, पार्किंग आणि इंधन",
+          "गाडीत पिण्याचे पाणी"
+        ],
+        "exclusions": [
+          "गिरनार रोपवे आणि बेट द्वारका बोटीचे तिकीट",
+          "लाइट-अँड-साउंड शोचे तिकीट",
+          "गिरनारवरील डोली किंवा हमाल शुल्क",
+          "पूजा, देणगी आणि विशेष दर्शन शुल्क",
+          "स्मारके आणि संग्रहालयांचे प्रवेश शुल्क",
+          "वैयक्तिक खर्च, प्रवास विमा आणि समाविष्ट यादीत नसलेले काहीही"
+        ],
+        "seoTitle": "गिरनार सोमनाथ द्वारका दर्शन यात्रा पुण्याहून 6 रात्री/7 दिवस | My Yatra",
+        "seoDescription": "पुण्याहून AC टेम्पो ट्रॅव्हलरने 6 रात्री / 7 दिवसांची तीर्थयात्रा: गिरनार चढाई किंवा रोपवे, सोमनाथ ज्योतिर्लिंग आरती, द्वारकाधीश आणि नागेश्वर दर्शन, हॉटेल मुक्काम आणि शाकाहारी जेवण."
+      },
+      "hi": {
+        "title": "श्री गिरनार – सोमनाथ – द्वारका *दर्शन* यात्रा",
+        "startCity": "पुणे",
+        "cities": [
+          "जूनागढ़",
+          "गिरनार",
+          "सोमनाथ",
+          "द्वारका"
+        ],
+        "mealPlan": "शुद्ध शाकाहारी भोजन शामिल",
+        "shortDescription": "पुणे से एक ही यात्रा में गुजरात के तीन पवित्र धाम: गिरनार चढ़कर (या रोपवे से) अंबाजी और गुरु दत्तात्रेय के दर्शन, समुद्र किनारे सोमनाथ ज्योतिर्लिंग की आरती और द्वारकाधीश व नागेश्वर के दर्शन — होटल ठहराव, शुद्ध शाकाहारी भोजन और पूरे सफ़र में AC टेम्पो ट्रैवलर।",
+        "itinerary": [
+          {
+            "title": "पुणे → गुजरात · यात्रा की शुरुआत",
+            "description": "सुरक्षित सफ़र की छोटी प्रार्थना के बाद शाम को AC टेम्पो ट्रैवलर से पुणे से रवानगी। सौराष्ट्र की ओर रात भर का सफ़र, रास्ते में साफ़-सुथरे हाईवे रेस्टोरेंट में रात का खाना।"
+          },
+          {
+            "title": "जूनागढ़ आगमन · भवनाथ आरती",
+            "description": "दोपहर तक जूनागढ़ पहुँचकर होटल में चेक-इन। आराम के बाद पवित्र पर्वत की तलहटी, गिरनार तलेटी में भवनाथ महादेव मंदिर के दर्शन और शाम की आरती। चढ़ाई से पहले जल्दी भोजन और जल्दी आराम। ठहराव जूनागढ़ में।"
+          },
+          {
+            "title": "गिरनार दर्शन · सीढ़ियाँ या रोपवे",
+            "description": "सूर्योदय से पहले निकलें। जंगल के बीच प्राचीन पत्थर की सीढ़ियाँ चढ़ें, या गिरनार रोपवे से अंबाजी तक जाएँ (टिकट अलग) और हरी-भरी घाटियों का विहंगम नज़ारा देखें। अंबाजी माता और संगमरमर के जैन मंदिरों के दर्शन; जो और ऊपर जाना चाहें वे गुरु दत्तात्रेय शिखर तक जा सकते हैं। अपनी रफ़्तार से नीचे उतरें और होटल में आराम करें। ठहराव जूनागढ़ में।"
+          },
+          {
+            "title": "जूनागढ़ विरासत दर्शन → सोमनाथ",
+            "description": "नाश्ते के बाद जूनागढ़ का इतिहास देखें: नक्काशीदार गुफ़ाओं और बावड़ियों वाला पहाड़ी उपरकोट क़िला, सजावटी महाबत मक़बरा और दरबार हॉल संग्रहालय। लगभग दो घंटे में सोमनाथ — शाम की आरती और समुद्र किनारे लाइट-एंड-साउंड शो। ठहराव सोमनाथ में।"
+          },
+          {
+            "title": "सोमनाथ दर्शन → द्वारका",
+            "description": "सुबह-सुबह सोमनाथ ज्योतिर्लिंग के दर्शन, फिर भालका तीर्थ और त्रिवेणी संगम। पोरबंदर के कीर्ति मंदिर पर रुकते हुए समुद्र तट के रास्ते द्वारका। द्वारकाधीश मंदिर में शाम की आरती और गोमती घाट पर सैर। ठहराव द्वारका में।"
+          },
+          {
+            "title": "नागेश्वर, बेट द्वारका और वापसी का सफ़र",
+            "description": "सुबह नागेश्वर ज्योतिर्लिंग के दर्शन, ओखा से नाव द्वारा बेट द्वारका, फिर गोपी तालाब और रुक्मिणी देवी मंदिर। जल्दी रात का खाना खाकर पुणे की ओर रात भर का वापसी सफ़र।"
+          },
+          {
+            "title": "पुणे आगमन",
+            "description": "गिरनार, सोमनाथ और द्वारका का प्रसाद और आशीर्वाद लेकर शाम तक पुणे आगमन।"
+          }
+        ],
+        "inclusions": [
+          "पुणे से आने-जाने के लिए AC टेम्पो ट्रैवलर",
+          "4 रातें होटल ठहराव — जूनागढ़ 2, सोमनाथ 1, द्वारका 1 (ट्विन/ट्रिपल शेयरिंग)",
+          "प्लान के अनुसार शुद्ध शाकाहारी भोजन",
+          "हर मंदिर में दर्शन के लिए मार्गदर्शन",
+          "ड्राइवर भत्ता, टोल, पार्किंग और ईंधन",
+          "गाड़ी में पीने का पानी"
+        ],
+        "exclusions": [
+          "गिरनार रोपवे और बेट द्वारका नाव का टिकट",
+          "लाइट-एंड-साउंड शो का टिकट",
+          "गिरनार पर डोली या कुली शुल्क",
+          "पूजा, दान और विशेष दर्शन शुल्क",
+          "स्मारकों और संग्रहालयों का प्रवेश शुल्क",
+          "निजी ख़र्च, यात्रा बीमा और शामिल सूची के बाहर कुछ भी"
+        ],
+        "seoTitle": "गिरनार सोमनाथ द्वारका दर्शन यात्रा पुणे से 6 रातें/7 दिन | My Yatra",
+        "seoDescription": "पुणे से AC टेम्पो ट्रैवलर द्वारा 6 रातें / 7 दिन की तीर्थयात्रा: गिरनार चढ़ाई या रोपवे, सोमनाथ ज्योतिर्लिंग आरती, द्वारकाधीश और नागेश्वर दर्शन, होटल ठहराव और शाकाहारी भोजन।"
+      }
+    }
+  },
+  {
     "id": "pkg-kashmir-01",
     "slug": "kashmir-lakes-meadows-4n-5d",
     "title": "Kashmir: Lakes, Meadows & Snow Peaks",
