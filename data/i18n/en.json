@@ -402,6 +402,8 @@
     "later": "Maybe later",
     "close": "Close offer",
     "perPerson": "per person",
-    "wa": "Hi {brand}! I would like to book the Diwali offer: {title}."
+    "wa": "Hi {brand}! I would like to book the Diwali offer: {title}.",
+    "passTitle": "Diwali Yatra Pass",
+    "priceLabel": "Diwali price · per person"
   }
 }

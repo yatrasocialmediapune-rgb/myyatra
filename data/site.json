@@ -205,6 +205,11 @@
     "enabled": true,
     "packageId": "pkg-girnar-somnath-dwarka-01",
     "until": "2026-11-30",
-    "image": "images/hero-diwali-girnar.svg"
+    "image": "images/hero-diwali-girnar.svg",
+    "to": "Girnar",
+    "via": [
+      "Somnath",
+      "Dwarka"
+    ]
   }
 }

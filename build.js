@@ -387,33 +387,55 @@ function build() {
       jsStrings: JSON.stringify(d.js || {}).replace(/</g, '\\u003c')
     };
 
-    /* ----- Festive offer popup (site.json → promo). Hidden by main.js after promo.until. ----- */
+    /* ----- Festive offer popup (site.json → promo), styled as a "yatra pass" ticket.
+       Hidden by main.js after promo.until. promo.to / promo.via pick which of the trip's
+       cities (English names) appear as the destination and the "via" line. ----- */
     base.promoHtml = '';
     const promo = site.promo || {};
     const promoPkg = promo.enabled && packages.find((p) => p.id === promo.packageId);
     if (promoPkg && (!promo.until || promo.until >= today)) {
       const waPromo = wa(t('promo.wa', { title: promoPkg.plainTitle }) + '\n' + abs(promoPkg.url));
+      const enCities = (packagesBase.find((p) => p.id === promoPkg.id) || {}).cities || [];
+      const cityL = (en) => { const i = enCities.indexOf(en); return i > -1 && promoPkg.cities[i] ? promoPkg.cities[i] : en; };
+      const toCity = promo.to ? cityL(promo.to) : promoPkg.cities[promoPkg.cities.length - 1] || stateShort(promoPkg.state);
+      const via = (promo.via || []).map(cityL);
       base.promoHtml = `<dialog class="promo" id="promo" aria-labelledby="promo-title" data-promo data-until="${esc(promo.until || '')}" data-key="${esc(promo.packageId + ':' + (promo.until || ''))}" data-skip="${esc(promoPkg.path)}">
-    <div class="promo__art">
-      ${img(promo.image || promoPkg.coverImage, '', { sizes: '440px' })}
-      <span class="stamp stamp--lg promo__stamp"><span>${esc(t('promo.badge'))}</span></span>
-      <button class="promo__close" type="button" data-promo-close aria-label="${esc(t('promo.close'))}"><svg class="icon"><use href="#i-x"/></svg></button>
-    </div>
-    <div class="promo__body">
-      <p class="eyebrow">${esc(t('promo.eyebrow'))}</p>
-      <h2 id="promo-title">${titleHtml(promoPkg.title)}</h2>
-      <p class="meta">${esc(nd(promoPkg))} · ${esc(promoPkg.cities.join(' · '))}</p>
-      <p class="promo__text">${esc(t('promo.text'))}</p>
-      <div class="promo__price">
-        ${promoPkg.priceWas ? `<span class="price__was">${promoPkg.priceWas}</span>` : ''}
-        <span class="price__now">${promoPkg.priceNow}</span><span class="price__unit">${esc(t('promo.perPerson'))}</span>
-        ${promoPkg.saveAmount ? `<span class="badge">${esc(t('fmt.save', { amount: promoPkg.saveAmount }))}</span>` : ''}
+    <div class="pass">
+      <div class="pass__top">
+        <svg class="pass__lanterns" viewBox="0 0 120 120" aria-hidden="true"><path d="M30 0v34M86 0v18" stroke="#FBC27A" stroke-width="1.5"/><circle cx="30" cy="52" r="26" fill="#F7941D" opacity=".2"/><path d="M30 34l14 18-14 18-14-18z" fill="#F7941D"/><path d="M30 41l8 11-8 11-8-11z" fill="#FEF0DE"/><path d="M24 70v10M30 70v14M36 70v10" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/><circle cx="86" cy="32" r="20" fill="#F7941D" opacity=".2"/><path d="M86 18l11 14-11 14-11-14z" fill="#F7941D"/><path d="M86 24l6 8-6 8-6-8z" fill="#FEF0DE"/><path d="M82 46v8M86 46v11M90 46v8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="pass__head">
+          <span class="pass__label"><svg class="icon"><use href="#i-diya"/></svg>${esc(t('promo.passTitle'))}</span>
+          <button class="pass__close" type="button" data-promo-close aria-label="${esc(t('promo.close'))}"><svg class="icon"><use href="#i-x"/></svg></button>
+        </div>
+        <h2 class="pass__trip" id="promo-title">${titleHtml(promoPkg.title)}</h2>
+        <div class="pass__route">
+          <div class="pass__city"><span>${esc(t('pkg.from'))}</span><strong>${esc(promoPkg.startCity)}</strong></div>
+          <div class="pass__path" aria-hidden="true"><svg class="icon"><use href="#i-diya"/></svg></div>
+          <div class="pass__city pass__city--to"><span>${esc(t('pkg.to'))}</span><strong>${esc(toCity)}</strong></div>
+        </div>
+        ${via.length ? `<p class="pass__via">${esc(via.join(' · '))}</p>` : ''}
+        <div class="pass__fields">
+          <div><span>${esc(t('pkg.duration'))}</span><strong>${esc(nd(promoPkg, 'fmt.ndShort'))}</strong></div>
+          <div><span>${esc(t('pkg.travellers'))}</span><strong>${esc(t('fmt.min', { n: promoPkg.minPeople }))}</strong></div>
+          <div><span>${esc(t('pkg.meals'))}</span><strong>${esc(String(promoPkg.mealPlan || '—').split(/\s[(+]/)[0])}</strong></div>
+        </div>
       </div>
-      <div class="promo__actions">
+      <div class="pass__perf" aria-hidden="true"></div>
+      <div class="pass__stub">
+        <div class="pass__price">
+          <div>
+            <span class="pass__price-label">${esc(t('promo.priceLabel'))}</span>
+            <span class="pass__amounts">${promoPkg.priceWas ? `<s>${promoPkg.priceWas}</s>` : ''}<strong>${promoPkg.priceNow}</strong></span>
+          </div>
+          ${promoPkg.saveAmount ? `<span class="pass__save">${esc(t('fmt.save', { amount: promoPkg.saveAmount }))}</span>` : ''}
+        </div>
         <a class="btn btn--primary btn--lg btn--block" href="${esc(waPromo)}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-whatsapp"/></svg> ${esc(t('promo.book'))}</a>
-        <a class="btn btn--outline btn--block" href="${promoPkg.url}">${esc(t('promo.view'))} <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></a>
+        <div class="pass__links">
+          <a href="${promoPkg.url}">${esc(t('promo.view'))} <svg class="icon icon--arrow"><use href="#i-arrow"/></svg></a>
+          <button type="button" data-promo-close>${esc(t('promo.later'))}</button>
+        </div>
+        <div class="barcode pass__barcode" aria-hidden="true"></div>
       </div>
-      <button class="promo__later" type="button" data-promo-close>${esc(t('promo.later'))}</button>
     </div>
   </dialog>`;
     }
